@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace DBModels
+namespace KMA.APZRP2019.AlarmClock.DBModels
 {
     [DataContract(IsReference = true)]
     public class User : IDBModel

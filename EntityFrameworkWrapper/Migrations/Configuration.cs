@@ -1,4 +1,4 @@
-namespace EntityFrameworkWrapper.Migrations
+namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper.Migrations
 {
     using System;
     using System.Data.Entity;

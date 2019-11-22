@@ -46,11 +46,21 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlarmClockDbContext.cs" />
+    <Compile Include="Migrations\201911222013045_UserMigrationV1.cs" />
+    <Compile Include="Migrations\201911222013045_UserMigrationV1.Designer.cs">
+      <DependentUpon>201911222013045_UserMigrationV1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911222034509_UserMigrationV2.cs" />
+    <Compile Include="Migrations\201911222034509_UserMigrationV2.Designer.cs">
+      <DependentUpon>201911222034509_UserMigrationV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelConfiguration\AlarmClockConfiguration.cs" />
     <Compile Include="ModelConfiguration\UserConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +68,14 @@
       <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
       <Name>DBModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201911222013045_UserMigrationV1.resx">
+      <DependentUpon>201911222013045_UserMigrationV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911222034509_UserMigrationV2.resx">
+      <DependentUpon>201911222034509_UserMigrationV2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
