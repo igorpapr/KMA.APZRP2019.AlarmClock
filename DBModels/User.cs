@@ -17,7 +17,11 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
         [DataMember]
         private string _email;
         [DataMember]
+        private string _login;
+        [DataMember]
         private string _password;
+        [DataMember]
+        private DateTime _lastLoginTime;
         [DataMember]
         private List<AlarmClock> _alarmClocks;
         #endregion
@@ -56,6 +60,19 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
                 _lastName = value;
             }
         }
+
+        public string Login
+        {
+            get
+            {
+                return _login;
+            }
+            private set
+            {
+                _login = value;
+            }
+        }
+
         public string Email
         {
             get
@@ -75,6 +92,12 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
                 return _password;
             }
             set { _password = value; }
+        }
+
+        public DateTime LastLoginTime
+        {
+            get { return _lastLoginTime; }
+            set { _lastLoginTime = value; }
         }
 
         public virtual List<AlarmClock> AlarmClocks
