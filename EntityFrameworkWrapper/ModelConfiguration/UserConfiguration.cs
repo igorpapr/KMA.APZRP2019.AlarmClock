@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBModels
+namespace EntityFrameworkWrapper.ModelConfiguration
 {
-    public interface IDBModel
+    class UserConfiguration
     {
-        Guid Guid { get; }
     }
 }

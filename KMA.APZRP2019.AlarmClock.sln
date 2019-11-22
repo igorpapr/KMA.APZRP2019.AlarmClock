@@ -12,7 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Providers", "Providers\Prov
 		{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14} = {D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDBProvider", "EntityFrameworkDBProvider\EntityFrameworkDBProvider.csproj", "{E5A05F9E-3A95-4E32-88D4-A45772383D04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkWrapper", "EntityFrameworkWrapper\EntityFrameworkWrapper.csproj", "{176B3347-1D40-425C-9EA8-C0C23A533E6C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14} = {D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +35,10 @@ Global
 		{5363894B-3946-47E9-A963-7161FBED84B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5363894B-3946-47E9-A963-7161FBED84B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5363894B-3946-47E9-A963-7161FBED84B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5A05F9E-3A95-4E32-88D4-A45772383D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5A05F9E-3A95-4E32-88D4-A45772383D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5A05F9E-3A95-4E32-88D4-A45772383D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5A05F9E-3A95-4E32-88D4-A45772383D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
