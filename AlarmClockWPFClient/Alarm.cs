@@ -12,13 +12,13 @@ namespace AlarmClockWPFClient
 
         public Alarm()
         {
-            _time = DateTime.Today.AddSeconds(-1);
+            _time = DateTime.Now;
         }
 
         public DateTime Time
         {
-            get { return _time; }
-            set { _time = value; }
+            get => _time;
+            set => _time = value;
         }
     }
 }

@@ -26,5 +26,6 @@ namespace AlarmClockWPFClient
             InitializeComponent();
             DataContext = new MainWindowViewModel();
         }
+
     }
 }

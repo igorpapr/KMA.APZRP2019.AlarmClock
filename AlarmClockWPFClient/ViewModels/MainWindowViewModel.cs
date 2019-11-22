@@ -33,7 +33,7 @@ namespace AlarmClockWPFClient.ViewModels
         public ObservableCollection<Alarm> Alarms
         {
             get => _alarms;
-            private set
+            set
             {
                 _alarms = value;
                 OnPropertyChanged();
