@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using AlarmClockWPFClient.ViewModels;
 
 namespace AlarmClockWPFClient
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Login : Window
     {
-        public MainWindow() 
+        public Login()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
     }
 }
