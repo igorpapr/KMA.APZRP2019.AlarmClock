@@ -19,6 +19,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkWrapper", "E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{42804405-F5D4-4087-B927-43EF705BEE01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmClockServerInterface", "AlarmClockServerInterface\AlarmClockServerInterface.csproj", "{578B94F7-A778-4D25-8C32-28E334C52E21}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14} = {D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmClockServiceImpl", "AlarmClockServiceImpl\AlarmClockServiceImpl.csproj", "{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14} = {D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}
+		{176B3347-1D40-425C-9EA8-C0C23A533E6C} = {176B3347-1D40-425C-9EA8-C0C23A533E6C}
+		{578B94F7-A778-4D25-8C32-28E334C52E21} = {578B94F7-A778-4D25-8C32-28E334C52E21}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,9 +53,21 @@ Global
 		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{176B3347-1D40-425C-9EA8-C0C23A533E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578B94F7-A778-4D25-8C32-28E334C52E21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578B94F7-A778-4D25-8C32-28E334C52E21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578B94F7-A778-4D25-8C32-28E334C52E21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578B94F7-A778-4D25-8C32-28E334C52E21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{578B94F7-A778-4D25-8C32-28E334C52E21} = {42804405-F5D4-4087-B927-43EF705BEE01}
+		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403} = {42804405-F5D4-4087-B927-43EF705BEE01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDA42ED3-C7FD-4146-B9F8-5BDBB690B1C0}

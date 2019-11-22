@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{176B3347-1D40-425C-9EA8-C0C23A533E6C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper</RootNamespace>
-    <AssemblyName>EntityFrameworkWrapper</AssemblyName>
+    <ProjectGuid>{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl</RootNamespace>
+    <AssemblyName>AlarmClockServiceImpl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,16 +32,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlarmClockImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -54,44 +50,18 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlarmClockDbContext.cs" />
-    <Compile Include="Migrations\201911222013045_UserMigrationV1.cs" />
-    <Compile Include="Migrations\201911222013045_UserMigrationV1.Designer.cs">
-      <DependentUpon>201911222013045_UserMigrationV1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911222034509_UserMigrationV2.cs" />
-    <Compile Include="Migrations\201911222034509_UserMigrationV2.Designer.cs">
-      <DependentUpon>201911222034509_UserMigrationV2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911222224556_UserMigrationV3.cs" />
-    <Compile Include="Migrations\201911222224556_UserMigrationV3.Designer.cs">
-      <DependentUpon>201911222224556_UserMigrationV3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ModelConfiguration\AlarmClockConfiguration.cs" />
-    <Compile Include="ModelConfiguration\UserConfiguration.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\AlarmClockServerInterface\AlarmClockServerInterface.csproj">
+      <Project>{578b94f7-a778-4d25-8c32-28e334c52e21}</Project>
+      <Name>AlarmClockServerInterface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBModels\DBModels.csproj">
       <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
       <Name>DBModels</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911222013045_UserMigrationV1.resx">
-      <DependentUpon>201911222013045_UserMigrationV1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911222034509_UserMigrationV2.resx">
-      <DependentUpon>201911222034509_UserMigrationV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911222224556_UserMigrationV3.resx">
-      <DependentUpon>201911222224556_UserMigrationV3.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\EntityFrameworkWrapper\EntityFrameworkWrapper.csproj">
+      <Project>{176b3347-1d40-425c-9ea8-c0c23a533e6c}</Project>
+      <Name>EntityFrameworkWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
