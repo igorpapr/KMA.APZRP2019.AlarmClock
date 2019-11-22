@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{176B3347-1D40-425C-9EA8-C0C23A533E6C}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>EntityFrameworkWrapper</RootNamespace>
+    <RootNamespace>KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper</RootNamespace>
     <AssemblyName>EntityFrameworkWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,6 +51,13 @@
   <ItemGroup>
     <Compile Include="AlarmClockDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelConfiguration\UserConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

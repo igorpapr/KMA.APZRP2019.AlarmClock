@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using DBModels;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 
-namespace Providers
+namespace KMA.APZRP2019.AlarmClock.Providers
 {
     public interface IDBProvider : IDisposable
     {
