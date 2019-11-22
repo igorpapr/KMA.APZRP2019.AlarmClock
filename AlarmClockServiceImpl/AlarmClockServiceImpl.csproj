@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E5A05F9E-3A95-4E32-88D4-A45772383D04}</ProjectGuid>
+    <ProjectGuid>{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>EntityFrameworkDBProvider</RootNamespace>
-    <AssemblyName>EntityFrameworkDBProvider</AssemblyName>
+    <RootNamespace>KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl</RootNamespace>
+    <AssemblyName>AlarmClockServiceImpl</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,34 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlarmClockImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlarmClockServerInterface\AlarmClockServerInterface.csproj">
+      <Project>{578b94f7-a778-4d25-8c32-28e334c52e21}</Project>
+      <Name>AlarmClockServerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFrameworkWrapper\EntityFrameworkWrapper.csproj">
+      <Project>{176b3347-1d40-425c-9ea8-c0c23a533e6c}</Project>
+      <Name>EntityFrameworkWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
