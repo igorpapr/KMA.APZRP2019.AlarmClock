@@ -8,5 +8,6 @@ namespace DBModels
 {
     interface IDBModel
     {
+        Guid Guid { get; }
     }
 }

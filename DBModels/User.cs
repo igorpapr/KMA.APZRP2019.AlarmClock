@@ -19,7 +19,7 @@ namespace DBModels
         [DataMember]
         private string _password;
         [DataMember]
-        private List<Dog> _dogs;
+        private List<AlarmClock> _alarmClocks;
         #endregion
 
         #region Properties
@@ -77,10 +77,10 @@ namespace DBModels
             set { _password = value; }
         }
 
-        public virtual List<Dog> Dogs
+        public virtual List<AlarmClock> AlarmClocks
         {
-            get => _dogs;
-            set => _dogs = value;
+            get => _alarmClocks;
+            set => _alarmClocks = value;
         }
         #endregion
 
@@ -97,13 +97,13 @@ namespace DBModels
 
         public User()
         {
-            _dogs = new List<Dog>();
+            _alarmClocks = new List<AlarmClock>();
         }
         #endregion
 
         private void SetPassword(string password)
         {
-            //TODO Add encription
+            //TODO Add encryption
             _password = password;
         }
 
