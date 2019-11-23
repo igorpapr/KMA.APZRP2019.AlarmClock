@@ -72,12 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\AlarmSevice\Reference.cs">
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Tools\ProcessManager.cs" />
+    <Compile Include="Tools\WCFClientIIS.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\Register.xaml.cs">
@@ -129,20 +130,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.wsdl" />
-    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.wsdl" />
+    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS1.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS2.xsd">
+    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\AlarmSevice\AlarmClockWPFClient.AlarmSevice.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\KMA.APZRP2019.AlarmClock.DBModels.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,19 +154,37 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AlarmSevice\" />
+    <ProjectReference Include="..\AlarmClockServerInterface\AlarmClockServerInterface.csproj">
+      <Project>{578b94f7-a778-4d25-8c32-28e334c52e21}</Project>
+      <Name>AlarmClockServerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlarmClockServiceImpl\AlarmClockServiceImpl.csproj">
+      <Project>{c3612148-3ca7-4cc0-82c6-77caf5c6a403}</Project>
+      <Name>AlarmClockServiceImpl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AlarmClockWCFServerIIS\AlarmClockWCFServerIIS.csproj">
+      <Project>{91cbf164-f83c-42b8-8f85-f9c8a1fd8e40}</Project>
+      <Name>AlarmClockWCFServerIIS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.disco" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmSevice\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmSevice\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmSevice\Reference.svcmap">
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

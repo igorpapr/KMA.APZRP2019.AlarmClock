@@ -5,9 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using AlarmClockWPFClient.Annotations;
 using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Views;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.ViewModels
 {
@@ -59,6 +61,18 @@ namespace AlarmClockWPFClient.ViewModels
                                
                                //TODO check login and password
 
+                               try
+                               {
+                                   WCFClientIIS cl = new WCFClientIIS();
+                                   var user = new User("Анатолий", "Гнида", "sosi", "box@gmail.com", "qwerty");
+                                   user.AlarmClocks.Add(new AlarmClock(DateTime.Now, DateTime.Now));
+                                   cl.AddUser(user);
+                               }
+                               catch (Exception e)
+                               {
+                                   MessageBox.Show(e.Message);
+                                   throw;
+                               }
                                MainWindow mainWindow = new MainWindow();
                                mainWindow.Show();
                                
