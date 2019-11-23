@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmClockServiceImpl", "Al
 		{578B94F7-A778-4D25-8C32-28E334C52E21} = {578B94F7-A778-4D25-8C32-28E334C52E21}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmClockWCFServerIIS", "AlarmClockWCFServerIIS\AlarmClockWCFServerIIS.csproj", "{3462446C-AD66-479B-8F6B-D388FAA860C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3462446C-AD66-479B-8F6B-D388FAA860C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3462446C-AD66-479B-8F6B-D388FAA860C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3462446C-AD66-479B-8F6B-D388FAA860C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3462446C-AD66-479B-8F6B-D388FAA860C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{578B94F7-A778-4D25-8C32-28E334C52E21} = {42804405-F5D4-4087-B927-43EF705BEE01}
 		{C3612148-3CA7-4CC0-82C6-77CAF5C6A403} = {42804405-F5D4-4087-B927-43EF705BEE01}
+		{3462446C-AD66-479B-8F6B-D388FAA860C9} = {42804405-F5D4-4087-B927-43EF705BEE01}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDA42ED3-C7FD-4146-B9F8-5BDBB690B1C0}
