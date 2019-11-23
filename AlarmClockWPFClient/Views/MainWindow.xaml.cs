@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AlarmClockWPFClient.ViewModels;
 
 namespace AlarmClockWPFClient
 {
@@ -20,9 +21,11 @@ namespace AlarmClockWPFClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow() 
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
+
     }
 }
