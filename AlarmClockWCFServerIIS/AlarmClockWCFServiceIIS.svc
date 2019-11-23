@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS.AlarmClockWCFServiceIIS" CodeBehind="AlarmClockWCFServiceIIS.svc.cs" %>
