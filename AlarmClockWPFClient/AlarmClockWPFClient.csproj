@@ -72,7 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\AlarmService\Reference.cs">
+    <Compile Include="Connected Services\AlarmSevice\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -129,17 +129,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.wsdl" />
-    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.xsd">
+    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.wsdl" />
+    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS1.xsd">
+    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS2.xsd">
+    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AlarmService\AlarmClockWPFClient.AlarmService.User.datasource">
+    <None Include="Connected Services\AlarmSevice\AlarmClockWPFClient.AlarmSevice.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -155,19 +155,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AlarmService\" />
+    <WCFMetadataStorage Include="Connected Services\AlarmSevice\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.disco" />
+    <None Include="Connected Services\AlarmSevice\AlarmClockWCFServiceIIS.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmService\configuration91.svcinfo" />
+    <None Include="Connected Services\AlarmSevice\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmService\configuration.svcinfo" />
+    <None Include="Connected Services\AlarmSevice\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AlarmService\Reference.svcmap">
+    <None Include="Connected Services\AlarmSevice\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

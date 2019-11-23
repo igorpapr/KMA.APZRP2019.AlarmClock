@@ -37,17 +37,57 @@ namespace AlarmClockWPFClient.ViewModels
 
             _tokenSource = new CancellationTokenSource();
             _token = _tokenSource.Token;
-            //StartWorkingThread();
-            //ProcessManager.StopThreads += StopWorkingThread;
+            StartWorkingThread();
+            ProcessManager.StopThreads += StopWorkingThread;
+        }
+
+        private void StartWorkingThread()
+        {
+            _workingThread1 = new Thread(WorkingThreadProcess1);
+            _workingThread1.Start();
+        }
+
+        private void WorkingThreadProcess1()
+        {
+            while (!_token.IsCancellationRequested)
+            {
+                foreach (var t in Alarms)
+                {
+                    if (ProcessManager.CheckAlarm(t))
+                    {
+                        t.CoolDown = true;
+                        MessageBox.Show("It's time of " + t.Time.Hour+':'+t.Time.Minute + " Alarm!!!");
+                    }
+                }
+
+                Thread.Sleep(1000);
+                if (_token.IsCancellationRequested)
+                    break;
+
+                for (int i = 0; i < Alarms.Count; i++)
+                {
+                    if (Alarms[i].CoolDown
+                        && Alarms[i].Time.Hour == DateTime.Now.Hour
+                        && Alarms[i].Time.Minute == DateTime.Now.Minute - 1)
+                    {
+                        Alarms[i].CoolDown = false;
+                    }
+                }
+            }
+        }
+
+        private void StopWorkingThread()
+        {
+            _tokenSource.Cancel();
+            _workingThread1.Join(100);
+            _workingThread1.Abort();
+            _workingThread1 = null;
         }
 
         public Alarm SelectedItem
         {
-            get { return _selectedAlarm; }
-            set
-            {
-                _selectedAlarm = value;
-            }
+            get => _selectedAlarm;
+            set => _selectedAlarm = value;
         }
 
 
@@ -137,21 +177,22 @@ namespace AlarmClockWPFClient.ViewModels
 
         private void EvokeImplmentation(object obj)
         {
-            if (ProcessManager.CheckAlarm(Alarms[0], 0) != -1)
+            if (ProcessManager.CheckAlarm(SelectedItem))
             {
-                Alarms[0].CoolDown = true;
-                SelectedItem = Alarms[0];
+                SelectedItem.CoolDown = true;
             }
         }
 
         private void StopImplmentation(object obj)
         {
-            ProcessManager.stopRing();
+            ProcessManager.StopRing();
         }
 
         private void LogoutImplementation(object obj)
         {
             MessageBox.Show("Msssg");
+
+            //TODO switch to log in
         }
 
 

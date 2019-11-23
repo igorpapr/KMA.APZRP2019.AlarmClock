@@ -57,6 +57,8 @@ namespace AlarmClockWPFClient.ViewModels
                            o =>
                            {
                                
+                               //TODO check login and password
+
                                MainWindow mainWindow = new MainWindow();
                                mainWindow.Show();
                                

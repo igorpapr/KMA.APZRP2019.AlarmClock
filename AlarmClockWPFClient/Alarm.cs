@@ -20,7 +20,11 @@ namespace AlarmClockWPFClient
         public DateTime Time
         {
             get => _time;
-            set => _time = value;
+            set
+            {
+                _time = value;
+                _coolDown = false;
+            } 
         }
 
         public bool CoolDown

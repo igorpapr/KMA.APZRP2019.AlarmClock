@@ -16,17 +16,17 @@ namespace AlarmClockWPFClient.Tools
 
         public static event Action StopThreads;
 
-        internal static int CheckAlarm(Alarm alarm,int id)
+        internal static bool CheckAlarm(Alarm alarm)
         {
             if (DateTime.Now.Hour == alarm.Time.Hour && DateTime.Now.Minute == alarm.Time.Minute 
                                                      && !alarm.CoolDown)
             {
                 RingRing();
-                return id;
+                return true;
             }
             else
             {
-                return -1;
+                return false;
             }
         }
 
@@ -36,7 +36,7 @@ namespace AlarmClockWPFClient.Tools
             player.Play();
         }
 
-        internal static void stopRing()
+        internal static void StopRing()
         {
             player.Stop();
         }
