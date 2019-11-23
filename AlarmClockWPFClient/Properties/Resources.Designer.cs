@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KMA.APZRP2019.AlarmClock.AlarmClockWPFClient.Properties {
+namespace AlarmClockWPFClient.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace KMA.APZRP2019.AlarmClock.AlarmClockWPFClient.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KMA.APZRP2019.AlarmClock.AlarmClockWPFClient.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlarmClockWPFClient.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
