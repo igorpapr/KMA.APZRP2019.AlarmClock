@@ -9,16 +9,24 @@ namespace AlarmClockWPFClient
     internal class Alarm
     {
         private DateTime _time;
+        private bool _coolDown;
 
         public Alarm()
         {
-            _time = DateTime.Now;
+            _coolDown = false;
+            _time = DateTime.Now.AddMinutes(-1);
         }
 
         public DateTime Time
         {
             get => _time;
             set => _time = value;
+        }
+
+        public bool CoolDown
+        {
+            get => _coolDown;
+            set => _coolDown = value;
         }
     }
 }

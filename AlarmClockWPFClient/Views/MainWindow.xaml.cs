@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.ViewModels;
 
 namespace AlarmClockWPFClient
@@ -27,5 +28,14 @@ namespace AlarmClockWPFClient
             DataContext = new MainWindowViewModel();
         }
 
+        private void TimePicker_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = FocusManager.GetFocusedElement(this) as TextBox;
+            if (textBox != null)
+            {
+                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                textBox.Focus();
+            }
+        }
     }
 }
