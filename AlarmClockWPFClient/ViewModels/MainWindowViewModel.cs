@@ -39,7 +39,6 @@ namespace AlarmClockWPFClient.ViewModels
             _token = _tokenSource.Token;
             //StartWorkingThread();
             //ProcessManager.StopThreads += StopWorkingThread;
-            MessageBox.Show(System.AppDomain.CurrentDomain.BaseDirectory);
         }
 
         public Alarm SelectedItem
