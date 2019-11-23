@@ -72,6 +72,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\AlarmService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ProcessManager.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -124,6 +129,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.wsdl" />
+    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AlarmService\AlarmClockWPFClient.AlarmService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -135,6 +153,24 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AlarmService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AlarmService\AlarmClockWCFServiceIIS.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AlarmService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AlarmService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AlarmService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
