@@ -167,7 +167,7 @@
       <Name>AlarmClockWCFServerIIS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBModels\DBModels.csproj">
-      <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
+      <Project>{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}</Project>
       <Name>DBModels</Name>
     </ProjectReference>
   </ItemGroup>

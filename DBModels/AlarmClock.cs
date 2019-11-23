@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace KMA.APZRP2019.AlarmClock.DBModels
 {
@@ -21,7 +25,7 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
         public Guid Guid
         {
             get => _guid;
-            private set => _guid = value;
+            set => _guid = Guid.NewGuid();
         }
 
         public DateTime LastAlarmTime
@@ -48,16 +52,18 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
             set => _ownerGuid = value;
         }
 
-        public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
+        public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : base()
         {
-            _guid = new Guid();
+            _guid = Guid.NewGuid();
             _lastAlarmTime = lastAlarmTime;
             _nextAlarmTime = nextAlarmTime;
         }
 
-        public AlarmClock()
+        public AlarmClock() : base()
         {
-            
+            _guid = Guid.NewGuid();
+            _lastAlarmTime = DateTime.Now;
+            _nextAlarmTime = DateTime.Now;
         }
     }
 }

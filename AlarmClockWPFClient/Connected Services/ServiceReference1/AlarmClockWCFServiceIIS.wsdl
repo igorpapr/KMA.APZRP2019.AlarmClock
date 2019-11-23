@@ -19,6 +19,30 @@
   <wsdl:message name="IAlarmClockService_AddUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
+  <wsdl:message name="IAlarmClockService_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_AddAlarmClock_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlarmClock" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_AddAlarmClock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAlarmClockResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_DeleteAlarmClock_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlarmClock" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_DeleteAlarmClock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAlarmClockResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_UpdateAlarmClock_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlarmClock" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_UpdateAlarmClock_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAlarmClockResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAlarmClockService">
     <wsdl:operation name="GetAllUsers">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/GetAllUsers" message="tns:IAlarmClockService_GetAllUsers_InputMessage" />
@@ -27,6 +51,22 @@
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/AddUser" message="tns:IAlarmClockService_AddUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/AddUserResponse" message="tns:IAlarmClockService_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/GetUser" message="tns:IAlarmClockService_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/GetUserResponse" message="tns:IAlarmClockService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAlarmClock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/AddAlarmClock" message="tns:IAlarmClockService_AddAlarmClock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/AddAlarmClockResponse" message="tns:IAlarmClockService_AddAlarmClock_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlarmClock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/DeleteAlarmClock" message="tns:IAlarmClockService_DeleteAlarmClock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/DeleteAlarmClockResponse" message="tns:IAlarmClockService_DeleteAlarmClock_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlarmClock">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClock" message="tns:IAlarmClockService_UpdateAlarmClock_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClockResponse" message="tns:IAlarmClockService_UpdateAlarmClock_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAlarmClockService" type="tns:IAlarmClockService">
@@ -42,6 +82,42 @@
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap:operation soapAction="http://tempuri.org/IAlarmClockService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAlarmClock">
+      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/AddAlarmClock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAlarmClock">
+      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/DeleteAlarmClock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAlarmClock">
+      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/UpdateAlarmClock" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

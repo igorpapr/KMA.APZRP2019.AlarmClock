@@ -21,5 +21,26 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
         {
             service.AddUser(user);
         }
+
+        public User GetUser(string login, string password)
+        {
+            return service.GetUser(login, password);
+        }
+
+        public void AddAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        {
+            service.AddAlarmClock(userGuid, clock);
+        }
+
+        public void DeleteAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        {
+            service.DeleteAlarmClock(userGuid,clock);
+        }
+
+        public void UpdateAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        {
+            service.UpdateAlarmClock(userGuid,clock);
+        }
+        
     }
 }

@@ -11,6 +11,7 @@ using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Views;
 using KMA.APZRP2019.AlarmClock.DBModels;
 
+
 namespace AlarmClockWPFClient.ViewModels
 {
     class LoginViewModel : INotifyPropertyChanged
@@ -64,14 +65,18 @@ namespace AlarmClockWPFClient.ViewModels
                                try
                                {
                                    WCFClientIIS cl = new WCFClientIIS();
-                                   var user = new User("Анатолий", "Гнида", "sosi", "box@gmail.com", "qwerty");
-                                   user.AlarmClocks.Add(new AlarmClock(DateTime.Now, DateTime.Now));
-                                   cl.AddUser(user);
+                                   var user = new User("NeAnatoliy", "NoГнида", "Otsosi", "box2@gmail.com", "1");
+                                   //AlarmClock clock = new AlarmClock(DateTime.Now, DateTime.Now);
+                                   //user.AlarmClocks.Add(clock);
+                                   //cl.AddUser(user);
+                                   AlarmClock al = new AlarmClock();
+                                   User user1 = cl.GetUser("Otsosi", "1");
+                                   cl.AddAlarmClock(user1.Guid, new AlarmClock());
                                }
                                catch (Exception e)
                                {
                                    MessageBox.Show(e.Message);
-                                   throw;
+                                   //throw;
                                }
                                MainWindow mainWindow = new MainWindow();
                                mainWindow.Show();

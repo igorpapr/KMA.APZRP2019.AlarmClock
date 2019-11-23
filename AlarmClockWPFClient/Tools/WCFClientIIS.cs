@@ -16,7 +16,7 @@ namespace AlarmClockWPFClient.Tools
 
         internal WCFClientIIS()
         {
-           serviceClient = new AlarmClockServiceClient("BasicHttpBinding_IAlarmClockService2"); 
+           serviceClient = new AlarmClockServiceClient("BasicHttpBinding_IAlarmClockService"); 
         }
 
         internal void AddUser(User user)
@@ -24,6 +24,42 @@ namespace AlarmClockWPFClient.Tools
             serviceClient.AddUser(user);
         }
 
+        internal List<User> GetAllUsers()
+        {
+            try
+            {
+                return serviceClient.GetAllUsers();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void AddAlarmClock(Guid userGuid, AlarmClock clock)
+        {
+            try
+            {
+               serviceClient.AddAlarmClock(userGuid,clock);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        internal User GetUser(string login, string password)
+        {
+            try
+            {
+                return serviceClient.GetUser(login, password);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 
 }
