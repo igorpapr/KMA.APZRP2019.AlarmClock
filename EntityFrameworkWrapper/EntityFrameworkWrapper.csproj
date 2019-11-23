@@ -7,7 +7,7 @@
     <ProjectGuid>{176B3347-1D40-425C-9EA8-C0C23A533E6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper</RootNamespace>
-    <AssemblyName>EntityFrameworkWrapper</AssemblyName>
+    <AssemblyName>KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

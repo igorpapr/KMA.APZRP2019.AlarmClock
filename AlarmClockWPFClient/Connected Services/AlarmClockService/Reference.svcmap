@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="01f8ec50-a715-4598-ba87-e579ced04f3a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:34790/AlarmClockWCFServiceIIS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AlarmClockWCFServiceIIS.xsd" MetadataType="Schema" ID="e2cdac00-15ad-42dc-9de7-269995919504" SourceId="1" SourceUrl="http://localhost:34790/AlarmClockWCFServiceIIS.svc?xsd=xsd1" />
+    <MetadataFile FileName="AlarmClockWCFServiceIIS1.xsd" MetadataType="Schema" ID="74d0a788-431a-4ca9-bca0-ce5c347420fe" SourceId="1" SourceUrl="http://localhost:34790/AlarmClockWCFServiceIIS.svc?xsd=xsd0" />
+    <MetadataFile FileName="AlarmClockWCFServiceIIS2.xsd" MetadataType="Schema" ID="edf9e07c-7d53-4418-97d8-37def0cf50c0" SourceId="1" SourceUrl="http://localhost:34790/AlarmClockWCFServiceIIS.svc?xsd=xsd2" />
+    <MetadataFile FileName="AlarmClockWCFServiceIIS.disco" MetadataType="Disco" ID="a1b601ac-55a5-4773-b795-15333704c4e8" SourceId="1" SourceUrl="http://localhost:34790/AlarmClockWCFServiceIIS.svc?disco" />
+    <MetadataFile FileName="AlarmClockWCFServiceIIS.wsdl" MetadataType="Wsdl" ID="435980d3-d28c-4f16-a3f9-6a696360ce4d" SourceId="1" SourceUrl="http://localhost:34790/AlarmClockWCFServiceIIS.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

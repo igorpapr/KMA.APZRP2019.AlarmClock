@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlarmClockWPFClient.Properties {
+namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
