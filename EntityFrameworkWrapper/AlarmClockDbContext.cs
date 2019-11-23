@@ -6,7 +6,7 @@ namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper
 {
     public class AlarmClockDbContext : DbContext
     {
-        public AlarmClockDbContext(): base("DB")
+        public AlarmClockDbContext(): base()//"DB"
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AlarmClockDbContext, Configuration>());
             Configuration.ProxyCreationEnabled = false;

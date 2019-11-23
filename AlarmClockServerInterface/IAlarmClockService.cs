@@ -12,5 +12,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
 
         [OperationContract]
         void AddUser(User user);
+
+        
     }
 }

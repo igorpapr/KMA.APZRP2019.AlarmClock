@@ -109,10 +109,11 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
 
         #region Constructor
 
-        public User(string firstName, string lastName, string email, string password) : this()
+        public User(string firstName, string lastName, string login, string email, string password) : this()
         {
             _guid = Guid.NewGuid();
             _firstName = firstName;
+            _login = login;
             _lastName = lastName;
             _email = email;
             SetPassword(password);
