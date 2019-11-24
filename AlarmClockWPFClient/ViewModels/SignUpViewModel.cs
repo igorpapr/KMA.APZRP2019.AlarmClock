@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AlarmClockWPFClient.Annotations;
+using AlarmClockWPFClient.Navigation;
+using AlarmClockWPFClient.Tools;
+using AlarmClockWPFClient.Tools.Managers;
+using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using AlarmClockWPFClient.Annotations;
-using AlarmClockWPFClient.Tools;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.ViewModels
 {
@@ -76,12 +76,7 @@ namespace AlarmClockWPFClient.ViewModels
             get
             {
                 return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(
-                           o =>
-                           {
-                               MessageBox.Show(Name + " " + Surname + " " + Email + " " + Login + " " + Password);
-                               // TODO make registration to DB and switch to mainView
-
-                           }, o => CanExecuteCommand()));
+                           SignUpImplementation, CanExecuteCommand));
             }
         }
 
@@ -92,14 +87,48 @@ namespace AlarmClockWPFClient.ViewModels
                 return _returnCommand ?? (_returnCommand = new RelayCommand<object>(
                     o =>
                     {
-
-                        //TODO make switch to signIn window
-
+                        Name = "";
+                        Surname = "";
+                        Login = "";
+                        Password = "";
+                        Email = "";
+                        NavigationManager.Instance.Navigate(ViewType.SignIn);
                     }));
             }
         }
 
-        public bool CanExecuteCommand()
+        private async void SignUpImplementation(object o)
+        {
+
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
+            {
+                try
+                {
+                    WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email, MD5.Encrypt(Password)));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                return true;
+            });
+            if (result)
+            {
+                MessageBox.Show($"Registered new user: {Name} {Surname} {Email}");
+                LoaderManager.Instance.HideLoader();
+                NavigationManager.Instance.Navigate(ViewType.SignIn);
+            }
+            else
+            {
+                LoaderManager.Instance.HideLoader();
+            }
+
+        }
+
+        public bool CanExecuteCommand(object o)
         {
             return !string.IsNullOrWhiteSpace(_login) && !string.IsNullOrWhiteSpace(_password)
                                                       && !string.IsNullOrWhiteSpace(_email) 

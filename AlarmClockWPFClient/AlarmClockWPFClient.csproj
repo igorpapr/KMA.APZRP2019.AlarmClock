@@ -38,7 +38,7 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="KMA.APZRP2019.AlarmClock.DBModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -106,6 +106,7 @@
     <Compile Include="Tools\Managers\NavigationManager.cs" />
     <Compile Include="Tools\Managers\SerializationManager.cs" />
     <Compile Include="Tools\Managers\StationManager.cs" />
+    <Compile Include="Tools\MD5.cs" />
     <Compile Include="Tools\PasswordBoxAssistant.cs" />
     <Compile Include="Tools\ProcessManager.cs" />
     <Compile Include="Tools\WCFClientIIS.cs" />
@@ -218,7 +219,7 @@
       <Name>AlarmClockWCFServerIIS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBModels\DBModels.csproj">
-      <Project>{D8A4D701-4F13-4AA3-ACC6-AC5C40A3CA14}</Project>
+      <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
       <Name>DBModels</Name>
     </ProjectReference>
   </ItemGroup>

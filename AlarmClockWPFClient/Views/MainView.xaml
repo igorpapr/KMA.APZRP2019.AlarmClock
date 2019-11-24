@@ -8,6 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
@@ -31,7 +33,8 @@
         <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="Add" Command="{Binding AddCommand}" FontSize="36" Height="51" Margin="20,0,0,0"/>
         <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Delete" Command="{Binding DeleteCommand}" FontSize="36" Height="51" Margin="20,0,0,0"/>
         <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Evoke" Command="{Binding EvokeCommand}" FontSize="36" Height="51" Margin="20,0,0,0" />
-
+        <Button Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Save all" Command="{Binding SaveCommand}" FontSize="36" Height="51" Margin="20,0,15,0" />
+        <Button Visibility="Hidden" Name="ClosingMainViewModel" Command="{Binding Path=ClosingMainViewModelCommand}"/>
         <ListBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.RowSpan="3"
                  ItemsSource="{Binding Alarms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalContentAlignment="Center" Margin="20,0.8,20,10">
@@ -45,4 +48,7 @@
         </ListBox>
         <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Stop" Command="{Binding StopCommand}" FontSize="30" Height="51" Margin="20,20" />
     </Grid>
+
+
+
 </UserControl>

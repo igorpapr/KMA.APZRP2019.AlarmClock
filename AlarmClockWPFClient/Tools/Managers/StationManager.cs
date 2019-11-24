@@ -30,6 +30,10 @@ namespace AlarmClockWPFClient.Tools.Managers
         internal static void CloseApp()
         {
             MessageBox.Show("ShutDown");
+
+
+
+
             StopThreads?.Invoke();
             Environment.Exit(1);
         }

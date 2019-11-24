@@ -25,6 +25,7 @@ namespace AlarmClockWPFClient.Views
         public MainView()
         {
             InitializeComponent();
+
             DataContext = new MainViewModel();
         }
 

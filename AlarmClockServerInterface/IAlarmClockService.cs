@@ -21,10 +21,13 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
         void AddAlarmClock(Guid userGuid, DBModels.AlarmClock clock);
 
         [OperationContract]
-        void DeleteAlarmClock(Guid userGuid, Guid clockGuid);
+        void DeleteAlarmClock(Guid clockGuid);
 
         [OperationContract]
-        void UpdateAlarmClock(Guid userGuid, Guid clockGuid, DateTime last, DateTime next);
+        void UpdateAlarmClock(DBModels.AlarmClock clock);
+
+        [OperationContract]
+        void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks);
 
     }
 }

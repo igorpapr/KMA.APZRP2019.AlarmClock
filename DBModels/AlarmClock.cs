@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace KMA.APZRP2019.AlarmClock.DBModels
 {
+    [Serializable]
     [DataContract(IsReference = true)]
     public class AlarmClock : IDBModel
     {
@@ -52,6 +53,13 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
             set => _ownerGuid = value;
         }
 
+        public AlarmClock(Guid guid, DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
+        {
+            _guid = guid;
+            _lastAlarmTime = lastAlarmTime;
+            _nextAlarmTime = nextAlarmTime;
+        }
+
         public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
         {
             _guid = Guid.NewGuid();
@@ -61,7 +69,7 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
 
         public AlarmClock()
         {
-            
+
         }
     }
 }

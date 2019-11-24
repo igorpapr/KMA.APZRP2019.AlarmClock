@@ -78,11 +78,35 @@ namespace AlarmClockWPFClient.Tools
             }
         }
 
-        internal void DeleteAlarmClock(Guid userGuid, Guid alarmGuid)
+        internal void DeleteAlarmClock(Guid alarmGuid)
         {
             try
             {
-                serviceClient.DeleteAlarmClock(userGuid, alarmGuid);
+                serviceClient.DeleteAlarmClock(alarmGuid);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void UpdateAllClocks(List<AlarmClock> clocks)
+        {
+            try
+            {
+                serviceClient.UpdateAllAlarmsByUser(clocks);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        internal void UpdateAlarmClock(AlarmClock clock)
+        {
+            try
+            {
+                serviceClient.UpdateAlarmClock(clock);
             }
             catch (Exception e)
             {

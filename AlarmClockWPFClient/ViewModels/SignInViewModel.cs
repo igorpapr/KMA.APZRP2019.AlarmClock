@@ -4,10 +4,13 @@ using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Tools.Managers;
 using KMA.APZRP2019.AlarmClock.DBModels;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 
 
 namespace AlarmClockWPFClient.ViewModels
@@ -78,6 +81,8 @@ namespace AlarmClockWPFClient.ViewModels
         #endregion
 
 
+
+
         private async void SignInImplementation(object obj)
         {
             LoaderManager.Instance.ShowLoader();
@@ -109,7 +114,14 @@ namespace AlarmClockWPFClient.ViewModels
             });
             LoaderManager.Instance.HideLoader();
             if (result)
+            {
+                Login = "";
+                Password = "";
+                List<User> tmp = new List<User>();
+                tmp.Add(StationManager.CurrentUser);
+                SerializationManager.Serialize(tmp,FileFolderHelper.StorageFilePath);
                 NavigationManager.Instance.Navigate(ViewType.Main);
+            }
         }
 
         public bool CanExecuteCommand(object o)

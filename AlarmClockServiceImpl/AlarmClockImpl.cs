@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using AlarmClockWPFClient.Tools;
 using KMA.APZRP2019.AlarmClock.Server.Interface;
 using KMA.APZRP2019.AlarmClock.DBModels;
 using KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper;
@@ -10,13 +12,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 {
     public class AlarmClockImpl : IAlarmClockService
     {
-        public IEnumerable<User> GetAllUsers()
-        {
-            using (var context = new AlarmClockDbContext())
-            {
-                return context.Users.Include(u => u.AlarmClocks).ToList();
-            }
-        }
 
         public void AddUser(User user)
         {
@@ -31,6 +26,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
+                password = MD5.Encrypt(password);
                 var resUser = context.Users.FirstOrDefault(u => u.Login == login
                                                                 && u.Password == password);
                     return resUser;
@@ -64,7 +60,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
             }
         }
 
-        public void DeleteAlarmClock(Guid userGuid, Guid alarmGuid)
+        public void DeleteAlarmClock(Guid alarmGuid)
         {
             using (var context = new AlarmClockDbContext())
             {
@@ -72,44 +68,46 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                 if (cloak != null)
                     context.AlarmClocks.Remove(cloak);
                 context.SaveChanges();
-
-                //var user = context.Users.Include(i => i.AlarmClocks)
-                //    .FirstOrDefault(u => u.Guid == userGuid);
-                //if (user != null)
-                //{
-                //    var clock = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
-                //    if (clock != null)
-                //    {
-                //        var cl = user.AlarmClocks.Remove(clock);
-                //        context.SaveChanges();
-                //    }
-                //}
-
-                //else throw new ArgumentException("Couldn't find user with that guid");
             }
         }
 
-        public void UpdateAlarmClock(Guid userGuid, Guid alarmGuid, DateTime l, DateTime n)
+        public void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks)
         {
             using (var context = new AlarmClockDbContext())
             {
-                var user = context.Users.Include(i => i.AlarmClocks)
-                    .FirstOrDefault(u => u.Guid == userGuid);
-                if (user != null)
+               
+                foreach (var clock in clocks)
                 {
-                    var cl = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
+                    var c = context.AlarmClocks.Find(clock.Guid);
+                    c.NextAlarmTime = clock.NextAlarmTime;
+                }
+                    
+                
+                context.SaveChanges();
+            }
+        }
+
+
+        public void UpdateAlarmClock(DBModels.AlarmClock clock)
+        {
+            using (var context = new AlarmClockDbContext())
+            {
+                try
+                {
+                    var cl = context.AlarmClocks.Find(clock.Guid);
                     if (cl != null)
                     {
-                        cl.LastAlarmTime = l;
-                        cl.NextAlarmTime = n;
+                        
+                        cl.LastAlarmTime = clock.LastAlarmTime;
+                        cl.NextAlarmTime = clock.NextAlarmTime;
                         context.SaveChanges();
                     }
-                    else
-                    {
-                        throw new ArgumentException("Couldn't find clock with that guid");
-                    }
                 }
-                else throw new ArgumentException("Couldn't find user with that guid");
+                catch (Exception e)
+                {
+                    throw e;
+                }
+
             }
         }
     }

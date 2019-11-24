@@ -18,6 +18,7 @@ using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Tools.DataStorage;
 using AlarmClockWPFClient.Tools.Managers;
 using AlarmClockWPFClient.ViewModels;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient
 {
@@ -44,7 +45,18 @@ namespace AlarmClockWPFClient
             StationManager.Initialize(new SerializedDataStorage());
             NavigationManager.Instance.Initialize(new InitializationNavigationModel(this));
             WCFClientIIS.Instance.Initialize();
-            NavigationManager.Instance.Navigate(ViewType.SignIn);
+            try
+            {
+                List<User> tmp = SerializationManager.Deserialize<List<User>>(FileFolderHelper.StorageFilePath);
+                StationManager.CurrentUser = tmp[0];
+                NavigationManager.Instance.Navigate(ViewType.Main);
+                if (tmp.Count <= 0)
+                    NavigationManager.Instance.Navigate(ViewType.SignIn);
+            }
+            catch (Exception)
+            {
+                NavigationManager.Instance.Navigate(ViewType.SignIn);
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)

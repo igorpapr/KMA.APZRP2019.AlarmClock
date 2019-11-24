@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using AlarmClockWPFClient.Annotations;
+using AlarmClockWPFClient.Navigation;
 using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Tools.Managers;
 using KMA.APZRP2019.AlarmClock.DBModels;
@@ -28,6 +31,7 @@ namespace AlarmClockWPFClient.ViewModels
         private ICommand _evokeCommand;
         private ICommand _stopCommand;
         private ICommand _logoutCommand;
+        private ICommand _saveCommand;
 
         private Thread _workingThread1;
         private readonly CancellationToken _token;
@@ -128,7 +132,7 @@ namespace AlarmClockWPFClient.ViewModels
             get
             {
                 return _deleteCommand ?? (_deleteCommand =
-                           new RelayCommand<object>(DeleteImplementation, CanExecuteDelete));
+                           new RelayCommand<object>(DeleteImplementation, CanExecuteCommand));
             }
         }
 
@@ -137,7 +141,7 @@ namespace AlarmClockWPFClient.ViewModels
             get
             {
                 return _evokeCommand ?? (_evokeCommand =
-                           new RelayCommand<object>(EvokeImplmentation));
+                           new RelayCommand<object>(EvokeImplementation, CanExecuteCommand));
             }
         }
 
@@ -159,6 +163,43 @@ namespace AlarmClockWPFClient.ViewModels
             }
         }
 
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ?? (_saveCommand =
+                           new RelayCommand<object>(SaveImplementation));
+            }
+        }
+
+
+        private async void SaveImplementation(object obj)
+        {
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
+            {
+                try
+                {
+                    List<AlarmClock> alrmClocks = new List<AlarmClock>();
+                    foreach (var al in Alarms)
+                    {
+                        alrmClocks.Add(new AlarmClock(al.Guid,al.Time,al.Time));
+                    }
+                    WCFClientIIS.Instance
+                        .UpdateAllClocks(alrmClocks);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                return true;
+            });
+            Alarms.Add(new Alarm());
+            LoaderManager.Instance.HideLoader();
+
+        }
 
         private async void AddImplementation(object obj)
         {
@@ -181,7 +222,6 @@ namespace AlarmClockWPFClient.ViewModels
             });
             Alarms.Add(new Alarm());
             LoaderManager.Instance.HideLoader();
-            //TODO add in DB
 
 //            if (result)
 //                NavigationManager.Instance.Navigate(ViewType.Main);
@@ -202,7 +242,7 @@ namespace AlarmClockWPFClient.ViewModels
                     {
                         try
                         {
-                            WCFClientIIS.Instance.DeleteAlarmClock(StationManager.CurrentUser.Guid, SelectedItem.Guid);
+                            WCFClientIIS.Instance.DeleteAlarmClock(SelectedItem.Guid);
 
                         }
                         catch (Exception e)
@@ -223,12 +263,24 @@ namespace AlarmClockWPFClient.ViewModels
             }
         }
 
-        private void EvokeImplmentation(object obj)
+        private async void EvokeImplementation(object obj)
         {
             ProcessManager.RingRing();
             MessageBox.Show("It's time of " + SelectedItem.Time.Hour + ':' + SelectedItem.Time.Minute + " Alarm!!!");
-            //TODO update alarm
-            
+            await Task.Run(() =>
+            {
+                try
+                {
+                    WCFClientIIS.Instance.UpdateAlarmClock(new AlarmClock(SelectedItem.Guid,DateTime.Now, SelectedItem.Time));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+                return true;
+            });
         }
 
         private void StopImplmentation(object obj)
@@ -236,16 +288,25 @@ namespace AlarmClockWPFClient.ViewModels
             ProcessManager.StopRing();
         }
 
-        public bool CanExecuteDelete(object o)
+        public bool CanExecuteCommand(object o)
         {
             return _selectedItem != null;
         }
 
         private void LogoutImplementation(object obj)
         {
-            MessageBox.Show("Msssg");
-
-            //TODO switch to log in
+            if (MessageBox.Show("Are you sure you want to log out?",
+                    "Question",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                NavigationManager.Instance.Navigate(ViewType.SignIn);
+                try
+                {
+                    File.Delete(FileFolderHelper.StorageFilePath);
+                }
+                catch (IOException)
+                {}
+            }
         }
 
         [NotifyPropertyChangedInvocator]
@@ -253,5 +314,7 @@ namespace AlarmClockWPFClient.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }
