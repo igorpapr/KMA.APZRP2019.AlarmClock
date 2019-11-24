@@ -18,6 +18,16 @@ namespace AlarmClockWPFClient
             _time = DateTime.Now.AddMinutes(-1);
         }
 
+        public Alarm(Guid guid, DateTime time)
+        {
+            _coolDown = false;
+            _time = time;
+            _guid = guid;
+        }
+
+
+
+
         public Guid Guid
         {
             get => _guid;

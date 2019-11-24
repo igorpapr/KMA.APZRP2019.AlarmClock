@@ -41,11 +41,11 @@ namespace AlarmClockWPFClient.Tools
             serviceClient.AddUser(user);
         }
 
-        internal List<User> GetAllUsers()
+        internal List<AlarmClock> GetAlarmClocks(Guid userGuid)
         {
             try
             {
-                return serviceClient.GetAllUsers();
+                return serviceClient.GetAlarmClocks(userGuid);
             }
             catch (Exception e)
             {
@@ -75,6 +75,18 @@ namespace AlarmClockWPFClient.Tools
             catch (Exception e)
             {
                 return null;
+            }
+        }
+
+        internal void DeleteAlarmClock(Guid userGuid, Guid alarmGuid)
+        {
+            try
+            {
+                serviceClient.DeleteAlarmClock(userGuid, alarmGuid);
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
     }

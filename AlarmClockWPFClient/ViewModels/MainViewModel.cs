@@ -11,6 +11,8 @@ using System.Windows;
 using System.Windows.Input;
 using AlarmClockWPFClient.Annotations;
 using AlarmClockWPFClient.Tools;
+using AlarmClockWPFClient.Tools.Managers;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.ViewModels
 {
@@ -19,7 +21,7 @@ namespace AlarmClockWPFClient.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ObservableCollection<Alarm> _alarms;
-        private Alarm _selectedAlarm;
+        private Alarm _selectedItem;
 
         private ICommand _addCommand;
         private ICommand _deleteCommand;
@@ -34,9 +36,16 @@ namespace AlarmClockWPFClient.ViewModels
 
         internal MainViewModel()
         {
-            List<Alarm> tmp = new List<Alarm>();
-            tmp.Add(new Alarm());
-            _alarms = new ObservableCollection<Alarm>(tmp);
+            List<Alarm> alarms = new List<Alarm>();
+            //tmp.Add(new Alarm());
+            List<AlarmClock> tmp = WCFClientIIS.Instance.GetAlarmClocks(StationManager.CurrentUser.Guid);
+
+            foreach (var alrm in tmp)
+            {
+                alarms.Add(new Alarm(alrm.Guid,alrm.NextAlarmTime));   
+            }
+
+            _alarms = new ObservableCollection<Alarm>(alarms);
 
             _tokenSource = new CancellationTokenSource();
             _token = _tokenSource.Token;
@@ -89,8 +98,8 @@ namespace AlarmClockWPFClient.ViewModels
 
         public Alarm SelectedItem
         {
-            get => _selectedAlarm;
-            set => _selectedAlarm = value;
+            get => _selectedItem;
+            set => _selectedItem = value;
         }
 
 
@@ -119,7 +128,7 @@ namespace AlarmClockWPFClient.ViewModels
             get
             {
                 return _deleteCommand ?? (_deleteCommand =
-                           new RelayCommand<object>(DeleteImplementation));
+                           new RelayCommand<object>(DeleteImplementation, CanExecuteDelete));
             }
         }
 
@@ -151,30 +160,66 @@ namespace AlarmClockWPFClient.ViewModels
         }
 
 
-        private void AddImplementation(object obj)
+        private async void AddImplementation(object obj)
         {
+           
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
+            {
+                try
+                {
+                    WCFClientIIS.Instance
+                        .AddAlarmClock(StationManager.CurrentUser.Guid,new AlarmClock(DateTime.Now.AddMinutes(-1), DateTime.Now.AddMinutes(-1)));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+                
+                return true;
+            });
             Alarms.Add(new Alarm());
+            LoaderManager.Instance.HideLoader();
             //TODO add in DB
+
+//            if (result)
+//                NavigationManager.Instance.Navigate(ViewType.Main);
+
         }
 
-        private void DeleteImplementation(object obj)
+        private async void DeleteImplementation(object obj)
         {
-            if (_selectedAlarm != null)
+            if (_selectedItem != null)
             {
                 if (MessageBox.Show("Are you sure you want to delete "
-                                    + _selectedAlarm.Time.Hour + ":" + _selectedAlarm.Time.Minute + " Alarm?",
+                                    + _selectedItem.Time.Hour + ":" + _selectedItem.Time.Minute + " Alarm?",
                         "Question",
                         MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
-                    Alarms.Remove(_selectedAlarm);
+                    LoaderManager.Instance.ShowLoader();
+                    var result = await Task.Run(() =>
+                    {
+                        try
+                        {
+                            WCFClientIIS.Instance.DeleteAlarmClock(StationManager.CurrentUser.Guid, SelectedItem.Guid);
 
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
 
-                    //TODO delete in DB
+                        return true;
+                    });
+                    Alarms.Remove(_selectedItem);
+                    LoaderManager.Instance.HideLoader();   
                 }
-            }
-            else
-            {
-                MessageBox.Show("Nothing is selected!");
+                }
+                else
+                {
+                    MessageBox.Show("Nothing is selected!");
             }
         }
 
@@ -183,11 +228,17 @@ namespace AlarmClockWPFClient.ViewModels
             ProcessManager.RingRing();
             MessageBox.Show("It's time of " + SelectedItem.Time.Hour + ':' + SelectedItem.Time.Minute + " Alarm!!!");
             //TODO update alarm
+            
         }
 
         private void StopImplmentation(object obj)
         {
             ProcessManager.StopRing();
+        }
+
+        public bool CanExecuteDelete(object o)
+        {
+            return _selectedItem != null;
         }
 
         private void LogoutImplementation(object obj)

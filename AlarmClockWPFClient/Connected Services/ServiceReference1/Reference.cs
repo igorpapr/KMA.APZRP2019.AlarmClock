@@ -15,12 +15,6 @@ namespace AlarmClockWPFClient.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IAlarmClockService")]
     public interface IAlarmClockService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetAllUsers", ReplyAction="http://tempuri.org/IAlarmClockService/GetAllUsersResponse")]
-        System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.User> GetAllUsers();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetAllUsers", ReplyAction="http://tempuri.org/IAlarmClockService/GetAllUsersResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.User>> GetAllUsersAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/AddUser", ReplyAction="http://tempuri.org/IAlarmClockService/AddUserResponse")]
         void AddUser(KMA.APZRP2019.AlarmClock.DBModels.User user);
         
@@ -33,6 +27,12 @@ namespace AlarmClockWPFClient.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetUser", ReplyAction="http://tempuri.org/IAlarmClockService/GetUserResponse")]
         System.Threading.Tasks.Task<KMA.APZRP2019.AlarmClock.DBModels.User> GetUserAsync(string login, string password);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetAlarmClocks", ReplyAction="http://tempuri.org/IAlarmClockService/GetAlarmClocksResponse")]
+        System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> GetAlarmClocks(System.Guid userGuid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetAlarmClocks", ReplyAction="http://tempuri.org/IAlarmClockService/GetAlarmClocksResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock>> GetAlarmClocksAsync(System.Guid userGuid);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/AddAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/AddAlarmClockResponse")]
         void AddAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
         
@@ -40,16 +40,16 @@ namespace AlarmClockWPFClient.ServiceReference1 {
         System.Threading.Tasks.Task AddAlarmClockAsync(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/DeleteAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/DeleteAlarmClockResponse")]
-        void DeleteAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
+        void DeleteAlarmClock(System.Guid userGuid, System.Guid clockGuid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/DeleteAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/DeleteAlarmClockResponse")]
-        System.Threading.Tasks.Task DeleteAlarmClockAsync(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
+        System.Threading.Tasks.Task DeleteAlarmClockAsync(System.Guid userGuid, System.Guid clockGuid);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/UpdateAlarmClockResponse")]
-        void UpdateAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
+        void UpdateAlarmClock(System.Guid userGuid, System.Guid clockGuid, System.DateTime last, System.DateTime next);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/UpdateAlarmClockResponse")]
-        System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock);
+        System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid userGuid, System.Guid clockGuid, System.DateTime last, System.DateTime next);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,14 +79,6 @@ namespace AlarmClockWPFClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.User> GetAllUsers() {
-            return base.Channel.GetAllUsers();
-        }
-        
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.User>> GetAllUsersAsync() {
-            return base.Channel.GetAllUsersAsync();
-        }
-        
         public void AddUser(KMA.APZRP2019.AlarmClock.DBModels.User user) {
             base.Channel.AddUser(user);
         }
@@ -103,6 +95,14 @@ namespace AlarmClockWPFClient.ServiceReference1 {
             return base.Channel.GetUserAsync(login, password);
         }
         
+        public System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> GetAlarmClocks(System.Guid userGuid) {
+            return base.Channel.GetAlarmClocks(userGuid);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock>> GetAlarmClocksAsync(System.Guid userGuid) {
+            return base.Channel.GetAlarmClocksAsync(userGuid);
+        }
+        
         public void AddAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock) {
             base.Channel.AddAlarmClock(userGuid, clock);
         }
@@ -111,20 +111,20 @@ namespace AlarmClockWPFClient.ServiceReference1 {
             return base.Channel.AddAlarmClockAsync(userGuid, clock);
         }
         
-        public void DeleteAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock) {
-            base.Channel.DeleteAlarmClock(userGuid, clock);
+        public void DeleteAlarmClock(System.Guid userGuid, System.Guid clockGuid) {
+            base.Channel.DeleteAlarmClock(userGuid, clockGuid);
         }
         
-        public System.Threading.Tasks.Task DeleteAlarmClockAsync(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock) {
-            return base.Channel.DeleteAlarmClockAsync(userGuid, clock);
+        public System.Threading.Tasks.Task DeleteAlarmClockAsync(System.Guid userGuid, System.Guid clockGuid) {
+            return base.Channel.DeleteAlarmClockAsync(userGuid, clockGuid);
         }
         
-        public void UpdateAlarmClock(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock) {
-            base.Channel.UpdateAlarmClock(userGuid, clock);
+        public void UpdateAlarmClock(System.Guid userGuid, System.Guid clockGuid, System.DateTime last, System.DateTime next) {
+            base.Channel.UpdateAlarmClock(userGuid, clockGuid, last, next);
         }
         
-        public System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid userGuid, KMA.APZRP2019.AlarmClock.DBModels.AlarmClock clock) {
-            return base.Channel.UpdateAlarmClockAsync(userGuid, clock);
+        public System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid userGuid, System.Guid clockGuid, System.DateTime last, System.DateTime next) {
+            return base.Channel.UpdateAlarmClockAsync(userGuid, clockGuid, last, next);
         }
     }
 }

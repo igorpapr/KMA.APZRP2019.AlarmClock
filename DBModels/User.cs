@@ -33,7 +33,7 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
             {
                 return _guid;
             }
-            private set
+            set
             {
                 _guid = value;
             }

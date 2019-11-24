@@ -13,6 +13,7 @@ namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<DBModels.AlarmClock> AlarmClocks { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

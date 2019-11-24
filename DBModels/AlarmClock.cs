@@ -25,7 +25,7 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
         public Guid Guid
         {
             get => _guid;
-            set => _guid = Guid.NewGuid();
+            set => _guid = value;
         }
 
         public DateTime LastAlarmTime
@@ -52,18 +52,16 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
             set => _ownerGuid = value;
         }
 
-        public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : base()
+        public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
         {
             _guid = Guid.NewGuid();
             _lastAlarmTime = lastAlarmTime;
             _nextAlarmTime = nextAlarmTime;
         }
 
-        public AlarmClock() : base()
+        public AlarmClock()
         {
-            _guid = Guid.NewGuid();
-            _lastAlarmTime = DateTime.Now;
-            _nextAlarmTime = DateTime.Now;
+            
         }
     }
 }

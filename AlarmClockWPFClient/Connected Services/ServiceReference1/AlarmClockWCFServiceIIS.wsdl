@@ -7,12 +7,6 @@
       <xsd:import schemaLocation="http://localhost:34790/AlarmClockWCFServiceIIS.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IAlarmClockService_GetAllUsers_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUsers" />
-  </wsdl:message>
-  <wsdl:message name="IAlarmClockService_GetAllUsers_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
-  </wsdl:message>
   <wsdl:message name="IAlarmClockService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
   </wsdl:message>
@@ -24,6 +18,12 @@
   </wsdl:message>
   <wsdl:message name="IAlarmClockService_GetUser_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_GetAlarmClocks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmClocks" />
+  </wsdl:message>
+  <wsdl:message name="IAlarmClockService_GetAlarmClocks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmClocksResponse" />
   </wsdl:message>
   <wsdl:message name="IAlarmClockService_AddAlarmClock_InputMessage">
     <wsdl:part name="parameters" element="tns:AddAlarmClock" />
@@ -44,10 +44,6 @@
     <wsdl:part name="parameters" element="tns:UpdateAlarmClockResponse" />
   </wsdl:message>
   <wsdl:portType name="IAlarmClockService">
-    <wsdl:operation name="GetAllUsers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/GetAllUsers" message="tns:IAlarmClockService_GetAllUsers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/GetAllUsersResponse" message="tns:IAlarmClockService_GetAllUsers_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/AddUser" message="tns:IAlarmClockService_AddUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/AddUserResponse" message="tns:IAlarmClockService_AddUser_OutputMessage" />
@@ -55,6 +51,10 @@
     <wsdl:operation name="GetUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/GetUser" message="tns:IAlarmClockService_GetUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/GetUserResponse" message="tns:IAlarmClockService_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmClocks">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/GetAlarmClocks" message="tns:IAlarmClockService_GetAlarmClocks_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/GetAlarmClocksResponse" message="tns:IAlarmClockService_GetAlarmClocks_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddAlarmClock">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/AddAlarmClock" message="tns:IAlarmClockService_AddAlarmClock_InputMessage" />
@@ -71,15 +71,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAlarmClockService" type="tns:IAlarmClockService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllUsers">
-      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/GetAllUsers" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap:operation soapAction="http://tempuri.org/IAlarmClockService/AddUser" style="document" />
       <wsdl:input>
@@ -91,6 +82,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://tempuri.org/IAlarmClockService/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmClocks">
+      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/GetAlarmClocks" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

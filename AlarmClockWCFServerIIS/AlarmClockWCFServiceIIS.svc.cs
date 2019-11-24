@@ -10,12 +10,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
     // ПРИМЕЧАНИЕ. Чтобы запустить клиент проверки WCF для тестирования службы, выберите элементы Service1.svc или Service1.svc.cs в обозревателе решений и начните отладку.
     public class AlarmClockWCFServiceIIS : IAlarmClockService
     {
-
         private AlarmClockImpl service = new AlarmClockImpl();
-        public IEnumerable<User> GetAllUsers()
-        {
-            return service.GetAllUsers();
-        }
 
         public void AddUser(User user)
         {
@@ -27,19 +22,24 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
             return service.GetUser(login, password);
         }
 
+        public IEnumerable<DBModels.AlarmClock> GetAlarmClocks(Guid userGuid)
+        {
+            return service.GetAlarmClocks(userGuid);
+        }
+
         public void AddAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
         {
             service.AddAlarmClock(userGuid, clock);
         }
 
-        public void DeleteAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        public void DeleteAlarmClock(Guid userGuid, Guid alarmGuid)
         {
-            service.DeleteAlarmClock(userGuid,clock);
+            service.DeleteAlarmClock(userGuid, alarmGuid);
         }
 
-        public void UpdateAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        public void UpdateAlarmClock(Guid userGuid, Guid alarmGuid, DateTime last, DateTime next)
         {
-            service.UpdateAlarmClock(userGuid,clock);
+            service.UpdateAlarmClock(userGuid, alarmGuid, last, next);
         }
         
     }

@@ -38,6 +38,15 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
             }
         }
 
+        public IEnumerable<DBModels.AlarmClock> GetAlarmClocks(Guid userGuid)
+        {
+            using (var context = new AlarmClockDbContext())
+            {
+                return context.AlarmClocks.Where(x=>x.OwnerGuid==userGuid).ToList();
+
+            }
+        }
+
 
         public void AddAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
         {
@@ -59,19 +68,24 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-                var user = context.Users.Include(i => i.AlarmClocks)
-                    .FirstOrDefault(u => u.Guid == userGuid);
-                if (user != null)
-                {
-                    var clock = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
-                    if (clock != null)
-                    {
-                        var cl = user.AlarmClocks.Remove(clock);
-                        context.SaveChanges();
-                    }
-                }
-            
-                else throw new ArgumentException("Couldn't find user with that guid");
+                var cloak = context.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
+                if (cloak != null)
+                    context.AlarmClocks.Remove(cloak);
+                context.SaveChanges();
+
+                //var user = context.Users.Include(i => i.AlarmClocks)
+                //    .FirstOrDefault(u => u.Guid == userGuid);
+                //if (user != null)
+                //{
+                //    var clock = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
+                //    if (clock != null)
+                //    {
+                //        var cl = user.AlarmClocks.Remove(clock);
+                //        context.SaveChanges();
+                //    }
+                //}
+
+                //else throw new ArgumentException("Couldn't find user with that guid");
             }
         }
 
@@ -94,7 +108,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                     {
                         throw new ArgumentException("Couldn't find clock with that guid");
                     }
-
                 }
                 else throw new ArgumentException("Couldn't find user with that guid");
             }
