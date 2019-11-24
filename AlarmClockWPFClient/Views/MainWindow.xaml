@@ -5,48 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlarmClockWPFClient"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="Alarm cock
-        " Height="450" Width="800">
-
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="30*" />
-            <RowDefinition Height="30*" />
-            <RowDefinition Height="30*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-
-        <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"  Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Log out" Command="{Binding LogoutCommand}" FontSize="18"/>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
-
-        <Button Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="Add" Command="{Binding AddCommand}" FontSize="36" Height="51" Margin="20,0,0,0"/>
-        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Delete" Command="{Binding DeleteCommand}" FontSize="36" Height="51" Margin="20,0,0,0"/>
-        <Button Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Evoke" Command="{Binding EvokeCommand}" FontSize="36" Height="51" Margin="20,0,0,0" />
-
-        <ListBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.RowSpan="3"
-                 ItemsSource="{Binding Alarms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalContentAlignment="Center" Margin="20,0.8,20,10">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Height="auto">
-                        <xctk:TimePicker TextBoxBase.TextChanged="TimePicker_TextChanged" Value="{Binding Time}" MinWidth="50" MinHeight="50" FontSize="52" Margin="0,15,0,0" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-        <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Stop" Command="{Binding StopCommand}" FontSize="36" Height="51" Margin="20,0,0,0" />
-
+        Title="Alarm clock simylieitor" MinHeight="450" MinWidth="150" Width="800" Height="450"  WindowStartupLocation="CenterScreen">
+    <Grid >
+        <ContentControl Name="_contentControl" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></ContentControl>
+        <fa:ImageAwesome Name="_loader"  Icon="Refresh" Width="50" Height="50" Spin="True" Visibility="{Binding LoaderVisibility, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></fa:ImageAwesome>
     </Grid>
 </Window>

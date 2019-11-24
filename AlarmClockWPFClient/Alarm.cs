@@ -8,6 +8,7 @@ namespace AlarmClockWPFClient
 {
     internal class Alarm
     {
+        private Guid _guid;
         private DateTime _time;
         private bool _coolDown;
 
@@ -15,6 +16,12 @@ namespace AlarmClockWPFClient
         {
             _coolDown = false;
             _time = DateTime.Now.AddMinutes(-1);
+        }
+
+        public Guid Guid
+        {
+            get => _guid;
+            private set { _guid = value; }
         }
 
         public DateTime Time

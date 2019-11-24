@@ -1,23 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using AlarmClockWPFClient.ServiceReference1;
+﻿using AlarmClockWPFClient.ServiceReference1;
 using KMA.APZRP2019.AlarmClock.DBModels;
+using System;
+using System.Collections.Generic;
 
 namespace AlarmClockWPFClient.Tools
 {
     internal class WCFClientIIS
     {
-        private AlarmClockServiceClient serviceClient = null;
+        private static readonly object Locker = new object();
+        private static WCFClientIIS _instance;
 
-        internal WCFClientIIS()
+        private AlarmClockServiceClient serviceClient;
+
+        internal static WCFClientIIS Instance
         {
-           serviceClient = new AlarmClockServiceClient("BasicHttpBinding_IAlarmClockService"); 
+            get
+            {
+                if (_instance != null)
+                    return _instance;
+                lock (Locker)
+                {
+                    return _instance ?? (_instance = new WCFClientIIS());
+                }
+            }
         }
+
+
+        private WCFClientIIS()
+        {
+        }
+
+        internal void Initialize()
+        {
+            serviceClient = new AlarmClockServiceClient("BasicHttpBinding_IAlarmClockService");
+        }
+
 
         internal void AddUser(User user)
         {
@@ -57,7 +74,7 @@ namespace AlarmClockWPFClient.Tools
             }
             catch (Exception e)
             {
-                throw e;
+                return null;
             }
         }
     }

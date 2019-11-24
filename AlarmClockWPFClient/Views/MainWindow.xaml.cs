@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AlarmClockWPFClient.Navigation;
 using AlarmClockWPFClient.Tools;
+using AlarmClockWPFClient.Tools.DataStorage;
+using AlarmClockWPFClient.Tools.Managers;
 using AlarmClockWPFClient.ViewModels;
 
 namespace AlarmClockWPFClient
@@ -20,22 +24,34 @@ namespace AlarmClockWPFClient
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IContentOwner
     {
+
+        public ContentControl ContentControl
+        {
+            get { return _contentControl; }
+        }
+
         public MainWindow() 
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+            InitializeApplication();
         }
 
-        private void TimePicker_TextChanged(object sender, TextChangedEventArgs e)
+        private void InitializeApplication()
         {
-            var textBox = FocusManager.GetFocusedElement(this) as TextBox;
-            if (textBox != null)
-            {
-                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                textBox.Focus();
-            }
+            StationManager.Initialize(new SerializedDataStorage());
+            NavigationManager.Instance.Initialize(new InitializationNavigationModel(this));
+            WCFClientIIS.Instance.Initialize();
+            NavigationManager.Instance.Navigate(ViewType.SignIn);
         }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            StationManager.CloseApp();
+        }
+
     }
 }

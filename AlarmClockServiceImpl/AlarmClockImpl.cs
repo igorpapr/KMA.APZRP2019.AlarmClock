@@ -31,16 +31,10 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-                var resUser = context.Users.Include(i => i.AlarmClocks).FirstOrDefault(u => u.Login == login
+                var resUser = context.Users.FirstOrDefault(u => u.Login == login
                                                                 && u.Password == password);
-                if (resUser != null)
-                {
                     return resUser;
-                }
-                else
-                {
-                    throw new ArgumentException("No such user was found or bad credentials");
-                }
+               
             }
         }
 
@@ -61,7 +55,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
             }
         }
 
-        public void DeleteAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        public void DeleteAlarmClock(Guid userGuid, Guid alarmGuid)
         {
             using (var context = new AlarmClockDbContext())
             {
@@ -69,15 +63,19 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                     .FirstOrDefault(u => u.Guid == userGuid);
                 if (user != null)
                 {
-                    var cl = user.AlarmClocks.Remove(clock);
-                    context.SaveChanges();
-
+                    var clock = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
+                    if (clock != null)
+                    {
+                        var cl = user.AlarmClocks.Remove(clock);
+                        context.SaveChanges();
+                    }
                 }
+            
                 else throw new ArgumentException("Couldn't find user with that guid");
             }
         }
 
-        public void UpdateAlarmClock(Guid userGuid, DBModels.AlarmClock clock)
+        public void UpdateAlarmClock(Guid userGuid, Guid alarmGuid, DateTime l, DateTime n)
         {
             using (var context = new AlarmClockDbContext())
             {
@@ -85,10 +83,11 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                     .FirstOrDefault(u => u.Guid == userGuid);
                 if (user != null)
                 {
-                    var cl = user.AlarmClocks.FirstOrDefault(c => c.Guid == clock.Guid);
+                    var cl = user.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
                     if (cl != null)
                     {
-                        cl = clock;
+                        cl.LastAlarmTime = l;
+                        cl.NextAlarmTime = n;
                         context.SaveChanges();
                     }
                     else

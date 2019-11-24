@@ -8,199 +8,41 @@ using System.Windows;
 using System.Windows.Input;
 using AlarmClockWPFClient.Annotations;
 using AlarmClockWPFClient.Tools;
+using AlarmClockWPFClient.Tools.Managers;
 
 namespace AlarmClockWPFClient.ViewModels
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    internal class MainWindowViewModel : BaseViewModel, ILoaderOwner
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Fields
+        private Visibility _loaderVisibility = Visibility.Hidden;
+        private bool _isControlEnabled = true;
+        #endregion
 
-        private ObservableCollection<Alarm> _alarms;
-        private Alarm _selectedAlarm;
-
-        private ICommand _addCommand;
-        private ICommand _deleteCommand;
-        private ICommand _evokeCommand;
-        private ICommand _stopCommand;
-        private ICommand _logoutCommand;
-
-        private Thread _workingThread1;
-        private readonly CancellationToken _token;
-        private readonly CancellationTokenSource _tokenSource;
-
-
-        internal MainWindowViewModel()
+        #region Properties
+        public Visibility LoaderVisibility
         {
-            List<Alarm> tmp = new List<Alarm>();
-            tmp.Add(new Alarm());
-            _alarms = new ObservableCollection<Alarm>(tmp);
-
-            _tokenSource = new CancellationTokenSource();
-            _token = _tokenSource.Token;
-            StartWorkingThread();
-            ProcessManager.StopThreads += StopWorkingThread;
-        }
-
-        private void StartWorkingThread()
-        {
-            _workingThread1 = new Thread(WorkingThreadProcess1);
-            _workingThread1.Start();
-        }
-
-        private void WorkingThreadProcess1()
-        {
-            while (!_token.IsCancellationRequested)
-            {
-                foreach (var t in Alarms)
-                {
-                    if (ProcessManager.CheckAlarm(t))
-                    {
-                        t.CoolDown = true;
-                        MessageBox.Show("It's time of " + t.Time.Hour+':'+t.Time.Minute + " Alarm!!!");
-                    }
-                }
-
-                Thread.Sleep(1000);
-                if (_token.IsCancellationRequested)
-                    break;
-
-                for (int i = 0; i < Alarms.Count; i++)
-                {
-                    if (Alarms[i].CoolDown
-                        && Alarms[i].Time.Hour == DateTime.Now.Hour
-                        && Alarms[i].Time.Minute == DateTime.Now.Minute - 1)
-                    {
-                        Alarms[i].CoolDown = false;
-                    }
-                }
-            }
-        }
-
-        private void StopWorkingThread()
-        {
-            _tokenSource.Cancel();
-            _workingThread1.Join(100);
-            _workingThread1.Abort();
-            _workingThread1 = null;
-        }
-
-        public Alarm SelectedItem
-        {
-            get => _selectedAlarm;
-            set => _selectedAlarm = value;
-        }
-
-
-        public ObservableCollection<Alarm> Alarms
-        {
-            get => _alarms;
+            get { return _loaderVisibility; }
             set
             {
-                _alarms = value;
+                _loaderVisibility = value;
                 OnPropertyChanged();
             }
         }
-
-
-        public ICommand AddCommand
+        public bool IsControlEnabled
         {
-            get
+            get { return _isControlEnabled; }
+            set
             {
-                return _addCommand ?? (_addCommand =
-                           new RelayCommand<object>(AddImplementation));
+                _isControlEnabled = value;
+                OnPropertyChanged();
             }
         }
+        #endregion
 
-        public ICommand DeleteCommand
+        internal MainWindowViewModel()
         {
-            get
-            {
-                return _deleteCommand ?? (_deleteCommand = 
-                           new RelayCommand<object>(DeleteImplementation));
-            }
-        }
-
-        public ICommand EvokeCommand
-        {
-            get
-            {
-                return _evokeCommand ?? (_evokeCommand = 
-                           new RelayCommand<object>(EvokeImplmentation));
-            }
-        }
-
-        public ICommand StopCommand
-        {
-            get
-            {
-                return _stopCommand ?? (_stopCommand =
-                           new RelayCommand<object>(StopImplmentation));
-            }
-        }
-
-        public ICommand LogoutCommand
-        {
-            get
-            {
-                return _logoutCommand ?? (_logoutCommand = 
-                           new RelayCommand<object>(LogoutImplementation));
-            }
-        }
-
-
-        private void AddImplementation(object obj)
-        {
-            Alarms.Add(new Alarm());
-            //TODO add in DB
-        }
-
-        private void DeleteImplementation(object obj)
-        {
-           if (_selectedAlarm != null)
-           {
-               if (MessageBox.Show("Are you sure you want to delete "
-                                   + _selectedAlarm.Time.Hour + ":" + _selectedAlarm.Time.Minute + " Alarm?",
-                       "Question",
-                       MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-               {
-                   Alarms.Remove(_selectedAlarm);
-
-
-                   //TODO delete in DB
-               }
-           }
-           else
-           {
-               MessageBox.Show("Nothing is selected!");
-           }
-        }
-
-        private void EvokeImplmentation(object obj)
-        {
-            if (ProcessManager.CheckAlarm(SelectedItem))
-            {
-                SelectedItem.CoolDown = true;
-            }
-        }
-
-        private void StopImplmentation(object obj)
-        {
-            ProcessManager.StopRing();
-        }
-
-        private void LogoutImplementation(object obj)
-        {
-            MessageBox.Show("Msssg");
-
-            //TODO switch to log in
-        }
-
-
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            LoaderManager.Instance.Initialize(this);
         }
     }
 }

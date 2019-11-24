@@ -5,6 +5,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using AlarmClockWPFClient.Properties;
 using Microsoft.Win32;
 
 namespace AlarmClockWPFClient.Tools
@@ -12,7 +13,7 @@ namespace AlarmClockWPFClient.Tools
     internal static class ProcessManager
     {
         private static readonly SoundPlayer player 
-            = new SoundPlayer(System.AppDomain.CurrentDomain.BaseDirectory + "\\peetukh.wav");
+            = new SoundPlayer(Resource.peetukh1);
 
         public static event Action StopThreads;
 
@@ -30,7 +31,7 @@ namespace AlarmClockWPFClient.Tools
             }
         }
 
-        private static void RingRing()
+        internal static void RingRing()
         {
             player.Load();
             player.Play();

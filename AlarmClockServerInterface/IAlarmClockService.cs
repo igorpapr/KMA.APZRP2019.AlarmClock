@@ -9,25 +9,22 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
     public interface IAlarmClockService
     {
         [OperationContract]
-        IEnumerable<User> GetAllUsers();
-
-        [OperationContract]
         void AddUser(User user);
 
         [OperationContract]
         User GetUser(string login, string password);
 
-        //[OperationContract]
-        //IEnumerable<DBModels.AlarmClock> GetAlarmClocks(User user);
+        [OperationContract]
+        IEnumerable<DBModels.AlarmClock> GetAlarmClocks(Guid userGuid);
 
         [OperationContract]
         void AddAlarmClock(Guid userGuid, DBModels.AlarmClock clock);
 
         [OperationContract]
-        void DeleteAlarmClock(Guid userGuid, DBModels.AlarmClock clock);
+        void DeleteAlarmClock(Guid userGuid, Guid clockGuid);
 
         [OperationContract]
-        void UpdateAlarmClock(Guid userGuid, DBModels.AlarmClock clock);
+        void UpdateAlarmClock(Guid userGuid, Guid clockGuid, DateTime last, DateTime next);
 
     }
 }
