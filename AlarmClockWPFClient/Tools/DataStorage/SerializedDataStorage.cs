@@ -1,11 +1,8 @@
-﻿using System;
+﻿using AlarmClockWPFClient.Tools.Managers;
+using KMA.APZRP2019.AlarmClock.DBModels;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlarmClockWPFClient.Tools.Managers;
-using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.Tools.DataStorage
 {

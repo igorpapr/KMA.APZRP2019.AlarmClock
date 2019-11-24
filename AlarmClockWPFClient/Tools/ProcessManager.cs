@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using AlarmClockWPFClient.Properties;
-using Microsoft.Win32;
 
 namespace AlarmClockWPFClient.Tools
 {

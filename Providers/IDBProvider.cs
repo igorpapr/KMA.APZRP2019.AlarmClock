@@ -1,6 +1,6 @@
-﻿using System;
+﻿using KMA.APZRP2019.AlarmClock.DBModels;
+using System;
 using System.Collections.Generic;
-using KMA.APZRP2019.AlarmClock.DBModels;
 
 
 namespace KMA.APZRP2019.AlarmClock.Providers

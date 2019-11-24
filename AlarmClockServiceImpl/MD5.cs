@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace AlarmClockWPFClient.Tools
+namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 {
     class MD5
     {

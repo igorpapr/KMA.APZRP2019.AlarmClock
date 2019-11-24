@@ -1,8 +1,7 @@
 namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class UserMigrationV3 : DbMigration
     {
         public override void Up()

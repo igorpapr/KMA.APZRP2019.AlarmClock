@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlarmClockWPFClient
 {
@@ -24,9 +20,6 @@ namespace AlarmClockWPFClient
             _time = time;
             _guid = guid;
         }
-
-
-
 
         public Guid Guid
         {

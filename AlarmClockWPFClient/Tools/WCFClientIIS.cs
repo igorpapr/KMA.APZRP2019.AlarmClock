@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace AlarmClockWPFClient.Tools
 {
+    //class for providing interface of server
     internal class WCFClientIIS
     {
         private static readonly object Locker = new object();

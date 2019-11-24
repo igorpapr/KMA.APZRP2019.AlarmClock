@@ -1,15 +1,14 @@
-﻿using System;
+﻿using KMA.APZRP2019.AlarmClock.DBModels;
+using KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper;
+using KMA.APZRP2019.AlarmClock.Server.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using AlarmClockWPFClient.Tools;
-using KMA.APZRP2019.AlarmClock.Server.Interface;
-using KMA.APZRP2019.AlarmClock.DBModels;
-using KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper;
 
 namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 {
+    //implementation of server interface
     public class AlarmClockImpl : IAlarmClockService
     {
 

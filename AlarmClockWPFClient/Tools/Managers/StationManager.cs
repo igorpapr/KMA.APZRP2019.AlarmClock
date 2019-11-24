@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using AlarmClockWPFClient.Tools.DataStorage;
+﻿using AlarmClockWPFClient.Tools.DataStorage;
 using KMA.APZRP2019.AlarmClock.DBModels;
+using System;
+using System.Windows;
 
 namespace AlarmClockWPFClient.Tools.Managers
 {
@@ -13,29 +9,24 @@ namespace AlarmClockWPFClient.Tools.Managers
     {
         public static event Action StopThreads;
 
-        private static IDataStorage _dataStorage;
-
         internal static User CurrentUser { get; set; }
 
-        internal static IDataStorage DataStorage
-        {
-            get { return _dataStorage; }
-        }
+        internal static IDataStorage DataStorage { get; private set; }
 
         internal static void Initialize(IDataStorage dataStorage)
         {
-            _dataStorage = dataStorage;
+            DataStorage = dataStorage;
         }
 
         internal static void CloseApp()
         {
-            MessageBox.Show("ShutDown");
-
-
-
-
-            StopThreads?.Invoke();
-            Environment.Exit(1);
+            if (MessageBox.Show("Do you really want to shut down?\nAll unsaved data will be lost.\n" +
+                                "Save it by using \"Save all\" button before shutting down", "Question",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                StopThreads?.Invoke();
+                Environment.Exit(1);
+            }    
         }
     }
 }

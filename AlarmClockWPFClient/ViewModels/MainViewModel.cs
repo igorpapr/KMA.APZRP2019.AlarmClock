@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using AlarmClockWPFClient.Annotations;
+﻿using AlarmClockWPFClient.Annotations;
 using AlarmClockWPFClient.Navigation;
 using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Tools.Managers;
 using KMA.APZRP2019.AlarmClock.DBModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace AlarmClockWPFClient.ViewModels
 {
@@ -41,7 +38,6 @@ namespace AlarmClockWPFClient.ViewModels
         internal MainViewModel()
         {
             List<Alarm> alarms = new List<Alarm>();
-            //tmp.Add(new Alarm());
             List<AlarmClock> tmp = WCFClientIIS.Instance.GetAlarmClocks(StationManager.CurrentUser.Guid);
 
             foreach (var alrm in tmp)
@@ -222,10 +218,6 @@ namespace AlarmClockWPFClient.ViewModels
             });
             Alarms.Add(new Alarm());
             LoaderManager.Instance.HideLoader();
-
-//            if (result)
-//                NavigationManager.Instance.Navigate(ViewType.Main);
-
         }
 
         private async void DeleteImplementation(object obj)

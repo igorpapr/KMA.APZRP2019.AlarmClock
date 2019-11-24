@@ -1,9 +1,6 @@
 namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<EntityFrameworkWrapper.AlarmClockDbContext>
     {

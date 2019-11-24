@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlarmClockWPFClient.Views;
+﻿using AlarmClockWPFClient.Views;
+using System;
 
 namespace AlarmClockWPFClient.Navigation
 {

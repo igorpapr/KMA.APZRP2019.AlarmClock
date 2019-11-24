@@ -1,5 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
-using KMA.APZRP2019.AlarmClock.DBModels;
+﻿using KMA.APZRP2019.AlarmClock.DBModels;
+using System.Data.Entity.ModelConfiguration;
 
 namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper.ModelConfiguration
 {
