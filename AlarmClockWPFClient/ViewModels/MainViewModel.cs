@@ -192,7 +192,7 @@ namespace AlarmClockWPFClient.ViewModels
 
                 return true;
             });
-            Alarms.Add(new Alarm());
+            //Alarms.Add(new Alarm());
             LoaderManager.Instance.HideLoader();
 
         }

@@ -14,6 +14,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 
         public void AddUser(User user)
         {
+            //TODO перевірити чи нема ще такого юзера, ПЕРЕРОБИТИ
             using (var context = new AlarmClockDbContext())
             {
                 context.Users.Add(user);
@@ -25,10 +26,11 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
+                //TODO переробити
                 password = MD5.Encrypt(password);
                 var resUser = context.Users.FirstOrDefault(u => u.Login == login
                                                                 && u.Password == password);
-                    return resUser;
+                return resUser;
                
             }
         }
@@ -63,9 +65,13 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-                var cloak = context.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
-                if (cloak != null)
-                    context.AlarmClocks.Remove(cloak);
+                var cl = context.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
+                if (cl != null)
+                    context.AlarmClocks.Remove(cl);
+                else
+                {
+                    throw new ArgumentException("Couldn't find clock in database: " + alarmGuid);
+                }
                 context.SaveChanges();
             }
         }
@@ -74,14 +80,16 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-               
-                foreach (var clock in clocks)
-                {
-                    var c = context.AlarmClocks.Find(clock.Guid);
-                    c.NextAlarmTime = clock.NextAlarmTime;
-                }
-                    
-                
+                    foreach (var clock in clocks)
+                    {
+                        //var cl = context.AlarmClocks.FirstOrDefault(c => c.Guid == clock.Guid);
+                        var cl = context.AlarmClocks.Find(clock.Guid);
+                        if (cl != null)
+                        {
+                            cl.NextAlarmTime = clock.NextAlarmTime;
+                        }
+                        else throw new ArgumentException("Couldn't find clock in database.");
+                    }
                 context.SaveChanges();
             }
         }
@@ -101,6 +109,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                         cl.NextAlarmTime = clock.NextAlarmTime;
                         context.SaveChanges();
                     }
+                    else throw new ArgumentException("Couldn't find clock in database: ");
                 }
                 catch (Exception e)
                 {
