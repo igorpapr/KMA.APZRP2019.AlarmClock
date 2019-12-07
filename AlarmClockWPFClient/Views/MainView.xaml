@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="#E0FFF5">
+    <Grid Background="#E5E0FA">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*" />
             <RowDefinition Height="30*" />
@@ -21,18 +21,17 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"  Grid.ColumnSpan="3" Grid.RowSpan="2">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Log out" Command="{Binding LogoutCommand}" FontSize="18"/>
+        <DockPanel  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch"  Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Menu Background="#110934" Foreground="#9785EA"  DockPanel.Dock="Top" FontFamily="Copperplate Gothic Light">
+                <MenuItem Header="Log out" Command="{Binding LogoutCommand}" FontSize="20"/>
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
 
-        <Button Background="#3A7E68" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="Add" Command="{Binding AddCommand}" FontSize="30" Height="51" Margin="20,0,0,0"/>
-        <Button Background="#3A7E68" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Delete" Command="{Binding DeleteCommand}" FontSize="30" Height="51" Margin="20,0,0,0"/>
-        <Button Background="#3A7E68" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Evoke" Command="{Binding EvokeCommand}" FontSize="30" Height="51" Margin="20,0,0,0" />
-        <ListBox Background="#74AA99
-" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.RowSpan="3"
+        <Button Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="Add" Command="{Binding AddCommand}" FontSize="30" Height="51" Margin="20,0,0,0"/>
+        <Button Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Delete" Command="{Binding DeleteCommand}" FontSize="30" Height="51" Margin="20,0,0,0"/>
+        <Button Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Evoke" Command="{Binding EvokeCommand}" FontSize="30" Height="51" Margin="20,0,0,0" />
+        <ListBox Background="#CDC4F3" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.RowSpan="3"
                  ItemsSource="{Binding Alarms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalContentAlignment="Center" Margin="20,0.8,20,10">
             <ListBox.ItemTemplate>
@@ -43,7 +42,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Background="#3A7E68" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Stop" Command="{Binding StopCommand}" FontSize="30" Height="51" Margin="20,20" />
+        <Button Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Content="Stop" Command="{Binding StopCommand}" FontSize="30" Height="51" Margin="20,20" />
     </Grid>
 
 

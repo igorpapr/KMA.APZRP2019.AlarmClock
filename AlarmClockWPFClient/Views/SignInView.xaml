@@ -7,28 +7,33 @@
              xmlns:controls="clr-namespace:AlarmClockWPFClient.Tools.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="#E5E0FA">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
         <controls:LabelAndTextControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                       Caption="Enter login" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
-        <controls:LabelAndPasswordControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                           Caption="Enter password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
-        <Button Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" Content="Sign in" Command="{Binding SignInCommand}"/>
-        <Button Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" Content="Sign up" Command="{Binding SignUpCommand}"/>
-        <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" Content="Cancel" Command="{Binding CloseCommand}"/>
+                                       Caption="Enter login" Margin="80 10 80 0" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                           Caption="Enter password" Margin="80 10 80 0" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
+        <Button Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                Margin="40 30" Content="Sign in" Background="#8C78E8" Foreground="#0B0B2B" 
+                FontFamily="Copperplate Gothic Bold"
+                FontSize="26"
+                Command="{Binding SignInCommand}"/>
+        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                Margin="40 30" Content="Sign up" Background="#8C78E8" Foreground="#0B0B2B" 
+                FontSize="26" FontFamily="Copperplate Gothic Bold" Command="{Binding SignUpCommand}"/>
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" Margin="40 30" FontSize="26" Content="Cancel" 
+                Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold"
+                Command="{Binding CloseCommand}"/>
 
 </Grid>
 </UserControl>

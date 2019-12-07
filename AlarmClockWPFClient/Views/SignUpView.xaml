@@ -7,7 +7,7 @@
              xmlns:controls="clr-namespace:AlarmClockWPFClient.Tools.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="#E5E0FA">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -38,7 +38,11 @@
         <controls:LabelAndTextControl Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                        Caption="Enter Email" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
 
-       <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" Content="Sign up" Command="{Binding SignUpCommand}"/>
-        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" Content="Back" Command="{Binding ReturnCommand}"/>
+        <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                VerticalAlignment="Center" Margin="5" FontSize="20" 
+                Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold" Content="Sign up" Command="{Binding SignUpCommand}"/>
+        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" FontSize="20" 
+                Background="#8C78E8" Foreground="#0B0B2B" FontFamily="Copperplate Gothic Bold"
+                VerticalAlignment="Center" Margin="5" Content="Back" Command="{Binding ReturnCommand}"/>
     </Grid>
 </UserControl>
