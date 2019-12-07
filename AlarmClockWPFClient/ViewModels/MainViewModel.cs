@@ -42,7 +42,7 @@ namespace AlarmClockWPFClient.ViewModels
 
             foreach (var alrm in tmp)
             {
-                alarms.Add(new Alarm(alrm.Guid,alrm.NextAlarmTime));   
+                alarms.Add(new Alarm(alrm));   
             }
 
             _alarms = new ObservableCollection<Alarm>(alarms);

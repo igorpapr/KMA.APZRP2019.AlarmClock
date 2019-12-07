@@ -1,39 +1,53 @@
 ﻿using System;
+using System.Windows;
+using AlarmClockWPFClient.Tools;
+using AlarmClockWPFClient.Tools.Managers;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient
 {
     internal class Alarm
     {
-        private Guid _guid;
-        private DateTime _time;
+        //private Guid _guid;
+        //private DateTime _time;
         private bool _coolDown;
+
+        private AlarmClock _alarmClock;
 
         public Alarm()
         {
             _coolDown = false;
-            _time = DateTime.Now.AddMinutes(-1);
+            _alarmClock = new AlarmClock(DateTime.Now.AddMinutes(-1), DateTime.Now.AddMinutes(-1));
         }
 
-        public Alarm(Guid guid, DateTime time)
+        public Alarm(AlarmClock alarmClock)
         {
             _coolDown = false;
-            _time = time;
-            _guid = guid;
+            _alarmClock = alarmClock;
         }
 
         public Guid Guid
         {
-            get => _guid;
-            private set { _guid = value; }
+            get => _alarmClock.Guid;
+            private set => _alarmClock.Guid = value;
         }
 
         public DateTime Time
         {
-            get => _time;
+            get => _alarmClock.NextAlarmTime;
             set
             {
-                _time = value;
+                _alarmClock.NextAlarmTime = value;
                 _coolDown = false;
+                try
+                {
+                    WCFClientIIS.Instance
+                        .UpdateAlarmClock(_alarmClock);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             } 
         }
 
