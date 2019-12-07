@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AlarmClockWPFClient.Tools.Managers;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlarmClockWPFClient.Tools
 {
@@ -14,15 +11,17 @@ namespace AlarmClockWPFClient.Tools
             try
             {
                 var file = new FileInfo(filePath);
-                if (file.CreateFolderAndCheckFileExistance())
-                {
-                    file.Delete();
-                }
+                file.CreateFolderAndCheckFileExistance();
 
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
                     writer.WriteLine("-----------------------------------");
-                    writer.WriteLine("Date : " + DateTime.Now.ToString());
+                    writer.WriteLine("Date and Time : " + DateTime.Now);
+                    if (StationManager.CurrentUser != null)
+                        writer.WriteLine($"Current user:{Environment.NewLine}" +
+                                         $"\tFirst name: {StationManager.CurrentUser.FirstName}{Environment.NewLine}" +
+                                         $"\tLast name: {StationManager.CurrentUser.LastName}{Environment.NewLine}" +
+                                         $"\tLogin: {StationManager.CurrentUser.Login}{Environment.NewLine}");
                     writer.WriteLine(Environment.NewLine);
 
                     while (ex != null)
@@ -38,7 +37,7 @@ namespace AlarmClockWPFClient.Tools
             }
             catch (Exception e)
             {
-                Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
+                SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                 throw new Exception($"Failed to log data to file {filePath}", ex);
             }
         }
