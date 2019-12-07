@@ -265,7 +265,7 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 try
                 {
-                    WCFClientIIS.Instance.UpdateAlarmClock(new AlarmClock(SelectedItem.Guid,DateTime.Now, SelectedItem.Time));
+                    WCFClientIIS.Instance.UpdateAlarmClock(SelectedItem.Guid,DateTime.Now, SelectedItem.Time);
                 }
                 catch (Exception e)
                 {
@@ -294,8 +294,7 @@ namespace AlarmClockWPFClient.ViewModels
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
-                StationManager.isMainView = false;
-                StationManager.stopThreads();
+                StationManager.StopAllThreads();
                 try
                 {
                     File.Delete(FileFolderHelper.StorageFilePath);

@@ -38,12 +38,10 @@ namespace AlarmClockWPFClient
                 StationManager.CurrentUser = tmp[0];
                 if (tmp.Count <= 0)
                 {
-                    StationManager.isMainView = false;
                     NavigationManager.Instance.Navigate(ViewType.SignIn);
                 }
                 else
                 {
-                    StationManager.isMainView = true;
                     NavigationManager.Instance.Navigate(ViewType.Main);
                 }
 

@@ -42,7 +42,7 @@ namespace AlarmClockWPFClient
                 try
                 {
                     WCFClientIIS.Instance
-                        .UpdateAlarmClock(_alarmClock);
+                        .UpdateAlarmClock(_alarmClock.Guid, _alarmClock.LastAlarmTime, _alarmClock.NextAlarmTime);
                 }
                 catch (Exception e)
                 {
