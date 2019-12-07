@@ -18,10 +18,8 @@ namespace AlarmClockWPFClient.Tools
                 RingRing();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
+            
         }
 
         internal static void RingRing()
@@ -36,10 +34,10 @@ namespace AlarmClockWPFClient.Tools
         }
 
 
-    internal static void CloseApp()
-        {
-            StopThreads?.Invoke();
-            Environment.Exit(1);
-        }
+    //internal static void CloseApp()
+    //    {
+    //        StopThreads?.Invoke();
+    //        Environment.Exit(1);
+    //    }
     }
 }
