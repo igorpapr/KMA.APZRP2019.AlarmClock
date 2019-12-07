@@ -186,7 +186,7 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
 
@@ -209,7 +209,7 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
                 
@@ -295,6 +295,7 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
                 StationManager.isMainView = false;
+                StationManager.stopThreads();
                 try
                 {
                     File.Delete(FileFolderHelper.StorageFilePath);

@@ -26,13 +26,18 @@ namespace AlarmClockWPFClient.Tools.Managers
             DataStorage = dataStorage;
         }
 
+        public static void stopThreads()
+        {
+            StopThreads?.Invoke();
+        }
+
         internal static bool CloseApp()
         {
             if (_isMainView && MessageBox.Show("Do you really want to shut down?\nAll unsaved data will be lost.\n" +
                                                "Save it by using \"Save all\" button before shutting down", "Question",
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                StopThreads?.Invoke();
+                stopThreads();
                 return true;
             }
 
