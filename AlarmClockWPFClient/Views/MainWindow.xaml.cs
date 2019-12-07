@@ -48,8 +48,8 @@ namespace AlarmClockWPFClient
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            base.OnClosing(e);
             StationManager.CloseApp();
+            base.OnClosing(e);
         }
 
     }
