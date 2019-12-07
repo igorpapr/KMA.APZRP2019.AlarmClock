@@ -267,7 +267,9 @@ namespace AlarmClockWPFClient.ViewModels
                     File.Delete(FileFolderHelper.StorageFilePath);
                 }
                 catch (IOException)
-                {}
+                {
+                    MessageBox.Show("Error while deleting serialized user data.", "Client error",MessageBoxButton.OK,MessageBoxImage.Error);
+                }
             }
         }
 
