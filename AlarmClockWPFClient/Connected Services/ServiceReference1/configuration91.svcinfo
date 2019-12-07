@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="9Gbod7oB991PO0X8InWYNyqauPM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="tOMoiFKVXpcgBil4Y7ujWezZDFQ=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAlarmClockService2">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAlarmClockService">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IAlarmClockService2</serializedValue>
+          <serializedValue>BasicHttpBinding_IAlarmClockService</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,7 +112,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAlarmClockService" contract="ServiceReference1.IAlarmClockService" bindingType="basicHttpBinding" address="http://localhost:34790/AlarmClockWCFServiceIIS.svc" bindingConfiguration="BasicHttpBinding_IAlarmClockService2">
+    <endpoint name="BasicHttpBinding_IAlarmClockService" contract="ServiceReference1.IAlarmClockService" bindingType="basicHttpBinding" address="http://localhost:34790/AlarmClockWCFServiceIIS.svc" bindingConfiguration="BasicHttpBinding_IAlarmClockService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:34790/AlarmClockWCFServiceIIS.svc</serializedValue>
@@ -124,7 +124,7 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IAlarmClockService2</serializedValue>
+          <serializedValue>BasicHttpBinding_IAlarmClockService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>ServiceReference1.IAlarmClockService</serializedValue>

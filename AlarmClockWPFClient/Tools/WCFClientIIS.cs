@@ -1,7 +1,7 @@
 ﻿using AlarmClockWPFClient.ServiceReference1;
-using KMA.APZRP2019.AlarmClock.DBModels;
 using System;
 using System.Collections.Generic;
+using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.Tools
 {
@@ -103,11 +103,11 @@ namespace AlarmClockWPFClient.Tools
             }
         }
 
-        internal void UpdateAlarmClock(AlarmClock clock)
+        internal void UpdateAlarmClock(Guid alarmGuid, DateTime lastDateTime, DateTime nextDateTime)
         {
             try
             {
-                serviceClient.UpdateAlarmClock(clock);
+                serviceClient.UpdateAlarmClock(alarmGuid,lastDateTime,nextDateTime);
             }
             catch (Exception e)
             {

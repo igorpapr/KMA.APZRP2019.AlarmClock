@@ -24,7 +24,8 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
         void DeleteAlarmClock(Guid clockGuid);
 
         [OperationContract]
-        void UpdateAlarmClock(DBModels.AlarmClock clock);
+        //void UpdateAlarmClock(DBModels.AlarmClock clock);
+        void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime);
 
         [OperationContract]
         void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks);

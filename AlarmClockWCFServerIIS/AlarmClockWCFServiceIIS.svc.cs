@@ -35,9 +35,9 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
             service.DeleteAlarmClock(alarmGuid);
         }
 
-        public void UpdateAlarmClock(DBModels.AlarmClock clock)
+        public void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime)
         {
-            service.UpdateAlarmClock(clock);
+            service.UpdateAlarmClock(alarmGuid, lastTime, nextTime);
         }
 
         public void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks)

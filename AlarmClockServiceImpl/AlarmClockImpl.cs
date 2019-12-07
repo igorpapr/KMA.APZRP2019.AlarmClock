@@ -110,18 +110,17 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         }
 
 
-        public void UpdateAlarmClock(DBModels.AlarmClock clock)
+        public void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime)
         {
             using (var context = new AlarmClockDbContext())
             {
                 try
                 {
-                    var cl = context.AlarmClocks.Find(clock.Guid);
+                    var cl = context.AlarmClocks.FirstOrDefault(c => c.Guid == alarmGuid);
                     if (cl != null)
                     {
-                        
-                        cl.LastAlarmTime = clock.LastAlarmTime;
-                        cl.NextAlarmTime = clock.NextAlarmTime;
+                        cl.LastAlarmTime = lastTime;
+                        cl.NextAlarmTime = nextTime;
                         context.SaveChanges();
                     }
                     else throw new ArgumentException("Couldn't find clock in database: ");
@@ -130,7 +129,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                 {
                     throw e;
                 }
-
             }
         }
     }

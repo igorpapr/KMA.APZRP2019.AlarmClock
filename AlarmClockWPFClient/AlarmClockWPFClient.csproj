@@ -38,6 +38,7 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="KMA.APZRP2019.AlarmClock.DBModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -76,11 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Navigation\BaseNavigationModel.cs" />
     <Compile Include="Navigation\IContentOwner.cs" />
     <Compile Include="Navigation\INavigatable.cs" />
@@ -181,16 +177,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.wsdl" />
-    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KMA.APZRP2019.AlarmClock.DBModels.AlarmClock.datasource" />
     <None Include="Properties\DataSources\KMA.APZRP2019.AlarmClock.DBModels.User.datasource" />
@@ -214,27 +200,13 @@
       <Project>{c3612148-3ca7-4cc0-82c6-77caf5c6a403}</Project>
       <Name>AlarmClockServiceImpl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AlarmClockWCFServerIIS\AlarmClockWCFServerIIS.csproj">
-      <Project>{91cbf164-f83c-42b8-8f85-f9c8a1fd8e40}</Project>
-      <Name>AlarmClockWCFServerIIS</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DBModels\DBModels.csproj">
       <Project>{d8a4d701-4f13-4aa3-acc6-ac5c40a3ca14}</Project>
       <Name>DBModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Connected Services\ServiceReference1\AlarmClockWCFServiceIIS.disco" />
     <Content Include="Resorces\peetukh.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
