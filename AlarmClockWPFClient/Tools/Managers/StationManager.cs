@@ -7,7 +7,15 @@ namespace AlarmClockWPFClient.Tools.Managers
 {
     internal static class StationManager
     {
+        private static bool _isMainView;
+
         public static event Action StopThreads;
+
+        internal static bool isMainView
+        {
+            get => _isMainView;
+            set => _isMainView = value;
+        }
 
         internal static User CurrentUser { get; set; }
 
@@ -19,8 +27,8 @@ namespace AlarmClockWPFClient.Tools.Managers
         }
 
         internal static void CloseApp()
-        {
-            if (MessageBox.Show("Do you really want to shut down?\nAll unsaved data will be lost.\n" +
+        { 
+            if (_isMainView && MessageBox.Show("Do you really want to shut down?\nAll unsaved data will be lost.\n" +
                                 "Save it by using \"Save all\" button before shutting down", "Question",
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {

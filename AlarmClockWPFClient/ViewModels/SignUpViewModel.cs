@@ -5,6 +5,7 @@ using AlarmClockWPFClient.Tools.Managers;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using KMA.APZRP2019.AlarmClock.DBModels;
@@ -105,7 +106,16 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 try
                 {
-                    WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email, MD5.Encrypt(Password)));
+                    if (!new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Match(_email).Success)
+                    {
+                        MessageBox.Show("Email is incorrect", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
+                    else
+                    {
+                        WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email, MD5.Encrypt(Password)));
+                    }
+                   
                 }
                 catch (Exception e)
                 {
@@ -120,6 +130,11 @@ namespace AlarmClockWPFClient.ViewModels
                 MessageBox.Show($"Registered new user: {Name} {Surname} {Email}");
                 LoaderManager.Instance.HideLoader();
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
+                Name = "";
+                Surname = "";
+                Login = "";
+                Password = "";
+                Email = "";
             }
             else
             {

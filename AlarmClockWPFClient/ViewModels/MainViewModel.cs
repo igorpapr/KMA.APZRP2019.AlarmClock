@@ -295,6 +295,7 @@ namespace AlarmClockWPFClient.ViewModels
                     MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
+                StationManager.isMainView = false;
                 try
                 {
                     File.Delete(FileFolderHelper.StorageFilePath);

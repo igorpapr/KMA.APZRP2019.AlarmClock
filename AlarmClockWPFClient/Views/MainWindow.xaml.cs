@@ -36,9 +36,17 @@ namespace AlarmClockWPFClient
             {
                 List<User> tmp = SerializationManager.Deserialize<List<User>>(FileFolderHelper.StorageFilePath);
                 StationManager.CurrentUser = tmp[0];
-                NavigationManager.Instance.Navigate(ViewType.Main);
                 if (tmp.Count <= 0)
+                {
+                    StationManager.isMainView = false;
                     NavigationManager.Instance.Navigate(ViewType.SignIn);
+                }
+                else
+                {
+                    StationManager.isMainView = true;
+                    NavigationManager.Instance.Navigate(ViewType.Main);
+                }
+
             }
             catch (Exception)
             {

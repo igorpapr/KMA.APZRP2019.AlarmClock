@@ -119,6 +119,7 @@ namespace AlarmClockWPFClient.ViewModels
                 List<User> tmp = new List<User>();
                 tmp.Add(StationManager.CurrentUser);
                 SerializationManager.Serialize(tmp,FileFolderHelper.StorageFilePath);
+                StationManager.isMainView = false;
                 NavigationManager.Instance.Navigate(ViewType.Main);
             }
         }
