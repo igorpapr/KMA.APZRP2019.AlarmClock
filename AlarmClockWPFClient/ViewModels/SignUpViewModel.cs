@@ -113,13 +113,13 @@ namespace AlarmClockWPFClient.ViewModels
                     }
                     else
                     {
-                        WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email, MD5.Encrypt(Password)));
+                        WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email,Password));
                     }
                    
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(e.Message, "Error while signing up", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
 

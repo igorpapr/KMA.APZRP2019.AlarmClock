@@ -14,7 +14,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 
         public void AddUser(User user)
         {
-            //TODO перевірити чи нема ще такого юзера, ПЕРЕРОБИТИ
             using (var context = new AlarmClockDbContext())
             {
                 var resUserLogin = context.Users.FirstOrDefault(u => u.Login == user.Login || u.Email == user.Email);
@@ -33,14 +32,18 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-                //TODO переробити md5
-                password = MD5.Encrypt(password);
-                var resUser = context.Users.FirstOrDefault(u => u.Login == login
-                                                                && u.Password == password);
-                if (resUser == null)
+                var resUser = context.Users.FirstOrDefault(u => u.Login == login);
+                if (resUser != null)
+                {
+                    if (!resUser.CheckPassword(password))
+                        throw new ArgumentException("Couldn't find user with that login or password");
+                }
+                else
                 {
                     throw new ArgumentException("Couldn't find user with that login or password");
                 }
+                
+                
                 return resUser;
 
 

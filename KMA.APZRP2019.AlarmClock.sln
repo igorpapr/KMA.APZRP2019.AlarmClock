@@ -16,9 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkWrapper", "E
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{42804405-F5D4-4087-B927-43EF705BEE01}"
-	ProjectSection(SolutionItems) = preProject
-		AlarmClockWPFClient\Tools\MD5.cs = AlarmClockWPFClient\Tools\MD5.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmClockServerInterface", "AlarmClockServerInterface\AlarmClockServerInterface.csproj", "{578B94F7-A778-4D25-8C32-28E334C52E21}"
 	ProjectSection(ProjectDependencies) = postProject

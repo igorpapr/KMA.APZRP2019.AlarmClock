@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl;
 
 namespace KMA.APZRP2019.AlarmClock.DBModels
 {
@@ -128,14 +129,12 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
 
         private void SetPassword(string password)
         {
-            //TODO Add encryption
-            _password = password;
+            _password = MD5.Encrypt(password);
         }
 
-        internal bool CheckPassword(string password)
+        public bool CheckPassword(string password)
         {
-            //TODO Compare encrypted passwords
-            return _password == password;
+            return _password == MD5.Encrypt(password);
         }
 
         public override string ToString()
