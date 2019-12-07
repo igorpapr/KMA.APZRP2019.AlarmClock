@@ -17,8 +17,15 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
             //TODO перевірити чи нема ще такого юзера, ПЕРЕРОБИТИ
             using (var context = new AlarmClockDbContext())
             {
+                var resUserLogin = context.Users.FirstOrDefault(u => u.Login == user.Login || u.Email == user.Email);
+                if (resUserLogin != null)
+                {
+                    throw new ArgumentException("User with that login or email already exists");
+                }
+                
                 context.Users.Add(user);
                 context.SaveChanges();
+                
             }
         }
 

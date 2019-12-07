@@ -146,7 +146,7 @@ namespace AlarmClockWPFClient.ViewModels
             get
             {
                 return _stopCommand ?? (_stopCommand =
-                           new RelayCommand<object>(StopImplmentation));
+                           new RelayCommand<object>(StopImplementation));
             }
         }
 
@@ -192,7 +192,6 @@ namespace AlarmClockWPFClient.ViewModels
 
                 return true;
             });
-            //Alarms.Add(new Alarm());
             LoaderManager.Instance.HideLoader();
 
         }
@@ -278,7 +277,7 @@ namespace AlarmClockWPFClient.ViewModels
             });
         }
 
-        private void StopImplmentation(object obj)
+        private void StopImplementation(object obj)
         {
             ProcessManager.StopRing();
         }
