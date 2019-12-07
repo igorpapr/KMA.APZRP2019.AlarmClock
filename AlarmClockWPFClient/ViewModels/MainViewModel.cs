@@ -33,23 +33,42 @@ namespace AlarmClockWPFClient.ViewModels
         private readonly CancellationToken _token;
         private readonly CancellationTokenSource _tokenSource;
 
+        private readonly ProcessManager _processManager;
+
+
 
         internal MainViewModel()
         {
+            List<Alarm> warn = new List<Alarm>();
+
+            _processManager = new ProcessManager();
             List<Alarm> alarms = new List<Alarm>();
             List<AlarmClock> tmp = WCFClientIIS.Instance.GetAlarmClocks(StationManager.CurrentUser.Guid);
 
             foreach (var alrm in tmp)
             {
-                alarms.Add(new Alarm(alrm));   
-            }
+                alarms.Add(new Alarm(alrm));
 
+                if (alarms[alarms.Count-1].Time.Date == DateTime.Today.Date 
+                    && alarms[alarms.Count - 1].Time.TimeOfDay < DateTime.Now.TimeOfDay)
+                {
+                    MessageBox.Show("Skipped one alarm: "
+                                    + alarms[alarms.Count - 1].Time.TimeOfDay.Hours+':'
+                                    + alarms[alarms.Count - 1].Time.TimeOfDay.Minutes, "Warning", MessageBoxButton.OK,
+                        MessageBoxImage.Warning);
+
+                    alarms[alarms.Count - 1].Time = alarms[alarms.Count - 1].Time.AddYears(DateTime.Today.Year- alarms[alarms.Count - 1].Time.Year)
+                        .AddMonths(DateTime.Today.Month - alarms[alarms.Count - 1].Time.Month)
+                        .AddDays(DateTime.Today.Day - alarms[alarms.Count - 1].Time.Day + 1);
+                }
+            }
             _alarms = new ObservableCollection<Alarm>(alarms);
 
             _tokenSource = new CancellationTokenSource();
             _token = _tokenSource.Token;
             StartWorkingThread();
-            ProcessManager.StopThreads += StopWorkingThread;
+            
+            StationManager.StopThreads += StopWorkingThread;
         }
 
         private void StartWorkingThread()
@@ -64,7 +83,7 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 foreach (var t in Alarms)
                 {
-                    if (ProcessManager.CheckAlarm(t))
+                    if (_processManager.CheckAlarm(t))
                     {
                         t.CoolDown = true;
                         MessageBox.Show("It's time of " + t.Time.Hour + ':' + t.Time.Minute + " Alarm!!!");
@@ -166,7 +185,7 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 try
                 {
-                    newAlarmCock = new AlarmClock(DateTime.Now.AddMinutes(-1), DateTime.Now.AddMinutes(-1));
+                    newAlarmCock = new AlarmClock(DateTime.Now, DateTime.Today.AddDays(1));
                     WCFClientIIS.Instance
                         .AddAlarmClock(StationManager.CurrentUser.Guid,newAlarmCock);
                 }
@@ -226,7 +245,7 @@ namespace AlarmClockWPFClient.ViewModels
 
         private async void EvokeImplementation(object obj)
         {
-            ProcessManager.RingRing();
+            _processManager.RingRing();
             MessageBox.Show("It's time of " + SelectedItem.Time.Hour + ':' + SelectedItem.Time.Minute + " Alarm!!!");
             await Task.Run(() =>
             {
@@ -246,7 +265,7 @@ namespace AlarmClockWPFClient.ViewModels
 
         private void StopImplementation(object obj)
         {
-            ProcessManager.StopRing();
+            _processManager.StopRing();
         }
 
         public bool CanExecuteCommand(object o)

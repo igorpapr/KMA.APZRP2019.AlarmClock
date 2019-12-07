@@ -38,7 +38,11 @@ namespace AlarmClockWPFClient
             get => _alarmClock.NextAlarmTime;
             set
             {
-                _alarmClock.NextAlarmTime = value;
+                if (value.TimeOfDay < DateTime.Now.TimeOfDay)
+                    _alarmClock.NextAlarmTime = value;
+                else
+                    _alarmClock.NextAlarmTime = value.AddDays(-1);
+
                 _coolDown = false;
                 UpdateValue();
             }

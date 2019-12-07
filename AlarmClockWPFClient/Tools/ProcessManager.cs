@@ -3,41 +3,36 @@ using System.Media;
 
 namespace AlarmClockWPFClient.Tools
 {
-    internal static class ProcessManager
+    internal class ProcessManager
     {
-        private static readonly SoundPlayer player 
+        private readonly SoundPlayer player
             = new SoundPlayer(Resource.peetukh1);
 
-        public static event Action StopThreads;
-
-        internal static bool CheckAlarm(Alarm alarm)
+        internal bool CheckAlarm(Alarm alarm)
         {
-            if (DateTime.Now.Hour == alarm.Time.Hour && DateTime.Now.Minute == alarm.Time.Minute 
+            //if (DateTime.Now.Hour == alarm.Time.Hour && DateTime.Now.Minute == alarm.Time.Minute
+            //                                         && !alarm.CoolDown)
+            if (DateTime.Now.AddSeconds(-DateTime.Now.Second) == alarm.Time.AddSeconds(-alarm.Time.Second)
                                                      && !alarm.CoolDown)
             {
                 RingRing();
                 return true;
             }
+
             return false;
-            
+
         }
 
-        internal static void RingRing()
+        internal void RingRing()
         {
             player.Load();
             player.Play();
         }
 
-        internal static void StopRing()
+        internal void StopRing()
         {
             player.Stop();
         }
 
-
-    //internal static void CloseApp()
-    //    {
-    //        StopThreads?.Invoke();
-    //        Environment.Exit(1);
-    //    }
     }
 }
