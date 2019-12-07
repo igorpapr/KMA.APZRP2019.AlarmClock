@@ -49,12 +49,6 @@ namespace KMA.APZRP2019.AlarmClock.DBModels
             set => _ownerGuid = value;
         }
 
-        public AlarmClock(Guid guid, DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
-        {
-            _guid = guid;
-            _lastAlarmTime = lastAlarmTime;
-            _nextAlarmTime = nextAlarmTime;
-        }
 
         public AlarmClock(DateTime lastAlarmTime, DateTime nextAlarmTime) : this()
         {

@@ -28,7 +28,6 @@ namespace AlarmClockWPFClient.ViewModels
         private ICommand _evokeCommand;
         private ICommand _stopCommand;
         private ICommand _logoutCommand;
-        private ICommand _saveCommand;
 
         private Thread _workingThread1;
         private readonly CancellationToken _token;
@@ -159,53 +158,17 @@ namespace AlarmClockWPFClient.ViewModels
             }
         }
 
-        public ICommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ?? (_saveCommand =
-                           new RelayCommand<object>(SaveImplementation));
-            }
-        }
-
-
-        private async void SaveImplementation(object obj)
-        {
-            LoaderManager.Instance.ShowLoader();
-            var result = await Task.Run(() =>
-            {
-                try
-                {
-                    List<AlarmClock> alrmClocks = new List<AlarmClock>();
-                    foreach (var al in Alarms)
-                    {
-                        alrmClocks.Add(new AlarmClock(al.Guid,al.Time,al.Time));
-                    }
-                    WCFClientIIS.Instance
-                        .UpdateAllClocks(alrmClocks);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return false;
-                }
-
-                return true;
-            });
-            LoaderManager.Instance.HideLoader();
-
-        }
-
         private async void AddImplementation(object obj)
         {
-           
+            AlarmClock newAlarmCock = null;
             LoaderManager.Instance.ShowLoader();
             var result = await Task.Run(() =>
             {
                 try
                 {
+                    newAlarmCock = new AlarmClock(DateTime.Now.AddMinutes(-1), DateTime.Now.AddMinutes(-1));
                     WCFClientIIS.Instance
-                        .AddAlarmClock(StationManager.CurrentUser.Guid,new AlarmClock(DateTime.Now.AddMinutes(-1), DateTime.Now.AddMinutes(-1)));
+                        .AddAlarmClock(StationManager.CurrentUser.Guid,newAlarmCock);
                 }
                 catch (Exception e)
                 {
@@ -215,7 +178,11 @@ namespace AlarmClockWPFClient.ViewModels
                 
                 return true;
             });
-            Alarms.Add(new Alarm());
+            if (result)
+            {
+                Alarms.Add(new Alarm(newAlarmCock));
+            }
+            
             LoaderManager.Instance.HideLoader();
         }
 
