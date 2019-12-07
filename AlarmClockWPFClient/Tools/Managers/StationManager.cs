@@ -22,6 +22,7 @@ namespace AlarmClockWPFClient.Tools.Managers
         public static void StopAllThreads()
         {
             StopThreads?.Invoke();
+
         }
 
         internal static bool CloseApp()

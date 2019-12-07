@@ -281,6 +281,7 @@ namespace AlarmClockWPFClient.ViewModels
             {
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
                 StationManager.StopAllThreads();
+                StationManager.StopThreads -= StopWorkingThread;
                 try
                 {
                     File.Delete(FileFolderHelper.StorageFilePath);
