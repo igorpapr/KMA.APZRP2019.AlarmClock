@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using AlarmClockWPFClient.Tools;
 using AlarmClockWPFClient.Tools.Managers;
@@ -39,6 +40,21 @@ namespace AlarmClockWPFClient
             {
                 _alarmClock.NextAlarmTime = value;
                 _coolDown = false;
+                UpdateValue();
+            }
+        }
+
+        public bool CoolDown
+        {
+            get => _coolDown;
+            set => _coolDown = value;
+        }
+
+        private async void UpdateValue()
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
                 try
                 {
                     WCFClientIIS.Instance
@@ -48,13 +64,8 @@ namespace AlarmClockWPFClient
                 {
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            } 
-        }
-
-        public bool CoolDown
-        {
-            get => _coolDown;
-            set => _coolDown = value;
+            });
+            LoaderManager.Instance.HideLoader();
         }
     }
 }
