@@ -9,7 +9,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
     public interface IAlarmClockService
     {
         [OperationContract]
-        void AddUser(User user);
+        void AddUser(string firstName, string lastName, string login, string email, string password);
 
         [OperationContract]
         User GetUser(string login, string password);
@@ -24,11 +24,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.Interface
         void DeleteAlarmClock(Guid clockGuid);
 
         [OperationContract]
-        //void UpdateAlarmClock(DBModels.AlarmClock clock);
         void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime);
-
-        [OperationContract]
-        void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks);
 
     }
 }

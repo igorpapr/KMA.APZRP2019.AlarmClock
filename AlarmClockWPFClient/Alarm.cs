@@ -9,10 +9,8 @@ namespace AlarmClockWPFClient
 {
     internal class Alarm
     {
-        //private Guid _guid;
-        //private DateTime _time;
-        private bool _coolDown;
 
+        private bool _coolDown;
         private AlarmClock _alarmClock;
 
         public Alarm()

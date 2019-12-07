@@ -11,18 +11,16 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
     //implementation of server interface
     public class AlarmClockImpl : IAlarmClockService
     {
-
-        public void AddUser(User user)
+        public void AddUser(string firstName, string lastName, string login, string email, string password)
         {
             using (var context = new AlarmClockDbContext())
             {
-                var resUserLogin = context.Users.FirstOrDefault(u => u.Login == user.Login || u.Email == user.Email);
+                var resUserLogin = context.Users.FirstOrDefault(u => u.Login == login || u.Email == email);
                 if (resUserLogin != null)
                 {
                     throw new ArgumentException("User with that login or email already exists");
                 }
-                
-                context.Users.Add(user);
+                context.Users.Add(new User(firstName,lastName,login,email,password));
                 context.SaveChanges();
                 
             }
@@ -90,25 +88,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
                 context.SaveChanges();
             }
         }
-
-        public void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks)
-        {
-            using (var context = new AlarmClockDbContext())
-            {
-                    foreach (var clock in clocks)
-                    {
-                        //var cl = context.AlarmClocks.FirstOrDefault(c => c.Guid == clock.Guid);
-                        var cl = context.AlarmClocks.Find(clock.Guid);
-                        if (cl != null)
-                        {
-                            cl.NextAlarmTime = clock.NextAlarmTime;
-                        }
-                        else throw new ArgumentException("Couldn't find clock in database.");
-                    }
-                context.SaveChanges();
-            }
-        }
-
 
         public void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime)
         {

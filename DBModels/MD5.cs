@@ -6,7 +6,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
 {
     class MD5
     {
-        static string key { get; set; } = "A!9HHhi%XjjYY4YP2@Nob009X";
+        static string key { get; } = "A!9HHhi%XjjYY4YP2@Nob009X";
 
 
         public static string Encrypt(string text)
