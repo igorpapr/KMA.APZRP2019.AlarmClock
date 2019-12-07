@@ -103,11 +103,11 @@
     <Compile Include="Tools\DataStorage\SerializedDataStorage.cs" />
     <Compile Include="Tools\FileFolderHelper.cs" />
     <Compile Include="Tools\ILoaderOwner.cs" />
+    <Compile Include="Tools\Logger.cs" />
     <Compile Include="Tools\Managers\LoaderManager.cs" />
     <Compile Include="Tools\Managers\NavigationManager.cs" />
     <Compile Include="Tools\Managers\SerializationManager.cs" />
     <Compile Include="Tools\Managers\StationManager.cs" />
-    <Compile Include="Tools\MD5.cs" />
     <Compile Include="Tools\PasswordBoxAssistant.cs" />
     <Compile Include="Tools\ProcessManager.cs" />
     <Compile Include="Tools\WCFClientIIS.cs" />

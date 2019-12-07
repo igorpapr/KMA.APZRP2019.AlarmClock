@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AlarmClockWPFClient.Views;
 
 namespace AlarmClockWPFClient.Navigation
 {
@@ -25,6 +26,12 @@ namespace AlarmClockWPFClient.Navigation
 
         public void Navigate(ViewType viewType)
         {
+            if (viewType == ViewType.Main)
+            {
+                ContentOwner.ContentControl.Content = new MainView();
+                return;
+            }
+
             if (!ViewsDictionary.ContainsKey(viewType))
                 InitializeView(viewType);
             ContentOwner.ContentControl.Content = ViewsDictionary[viewType];

@@ -111,15 +111,12 @@ namespace AlarmClockWPFClient.ViewModels
                         MessageBox.Show("Email is incorrect", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return false;
                     }
-                    else
-                    {
-                        WCFClientIIS.Instance.AddUser(Name, Surname, Login, Email,Password);
-                    }
-                   
+                    WCFClientIIS.Instance.AddUser(Name, Surname, Login, Email,Password);                   
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message, "Error while signing up", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Logger.SaveIntoFile(e,FileFolderHelper.ExceptionLogFilePath);
                     return false;
                 }
 
