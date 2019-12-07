@@ -75,7 +75,7 @@ namespace AlarmClockWPFClient.Tools
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         }
 

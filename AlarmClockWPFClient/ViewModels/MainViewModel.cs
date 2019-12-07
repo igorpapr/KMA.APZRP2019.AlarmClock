@@ -239,19 +239,22 @@ namespace AlarmClockWPFClient.ViewModels
                         }
                         catch (Exception e)
                         {
-                            MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(e.Message, "Server error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
 
                         return true;
                     });
-                    Alarms.Remove(_selectedItem);
+                    if (result)
+                    { 
+                        Alarms.Remove(_selectedItem);
+                    }
                     LoaderManager.Instance.HideLoader();   
                 }
-                }
-                else
-                {
-                    MessageBox.Show("Nothing is selected!");
+            }
+            else
+            {
+                MessageBox.Show("Nothing is selected!");
             }
         }
 

@@ -94,7 +94,8 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                     return false;
                 }
 

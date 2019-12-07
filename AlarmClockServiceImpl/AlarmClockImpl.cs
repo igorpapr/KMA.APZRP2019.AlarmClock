@@ -26,12 +26,17 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
         {
             using (var context = new AlarmClockDbContext())
             {
-                //TODO переробити
+                //TODO переробити md5
                 password = MD5.Encrypt(password);
                 var resUser = context.Users.FirstOrDefault(u => u.Login == login
                                                                 && u.Password == password);
+                if (resUser == null)
+                {
+                    throw new ArgumentException("Couldn't find user with that login or password");
+                }
                 return resUser;
-               
+
+
             }
         }
 
