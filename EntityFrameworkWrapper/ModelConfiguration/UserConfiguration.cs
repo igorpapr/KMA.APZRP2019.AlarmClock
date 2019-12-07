@@ -16,8 +16,8 @@ namespace KMA.APZRP2019.AlarmClock.EntityFrameworkWrapper.ModelConfiguration
             Property(user => user.Email).HasColumnName("Email").HasMaxLength(256).IsRequired();
             Property(user => user.Password).HasColumnName("Password").IsRequired();
             Property(user => user.LastLoginTime).HasColumnName("LastLoginTime").HasColumnType("datetime2").IsRequired();
-            HasIndex(ind => new {ind.Email, ind.Login }).IsUnique(true);
-
+            HasIndex(ind => new {ind.Login} ).IsUnique(true);
+            HasIndex(ind => new { ind.Email}).IsUnique(true);
         }
     }
 }

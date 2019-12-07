@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201911232031418_UserMigrationV4.Designer.cs">
       <DependentUpon>201911232031418_UserMigrationV4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912071529157_UserMigrationV5.cs" />
+    <Compile Include="Migrations\201912071529157_UserMigrationV5.Designer.cs">
+      <DependentUpon>201912071529157_UserMigrationV5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfiguration\AlarmClockConfiguration.cs" />
     <Compile Include="ModelConfiguration\UserConfiguration.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911232031418_UserMigrationV4.resx">
       <DependentUpon>201911232031418_UserMigrationV4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912071529157_UserMigrationV5.resx">
+      <DependentUpon>201912071529157_UserMigrationV5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
