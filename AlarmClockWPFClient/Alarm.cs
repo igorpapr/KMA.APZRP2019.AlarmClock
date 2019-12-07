@@ -28,7 +28,6 @@ namespace AlarmClockWPFClient
         public Guid Guid
         {
             get => _alarmClock.Guid;
-            private set => _alarmClock.Guid = value;
         }
 
         public DateTime Time
@@ -64,6 +63,7 @@ namespace AlarmClockWPFClient
                 }
                 catch (Exception e)
                 {
+                    Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             });

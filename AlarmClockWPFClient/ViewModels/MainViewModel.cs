@@ -39,8 +39,6 @@ namespace AlarmClockWPFClient.ViewModels
 
         internal MainViewModel()
         {
-            List<Alarm> warn = new List<Alarm>();
-
             _processManager = new ProcessManager();
             List<Alarm> alarms = new List<Alarm>();
             List<AlarmClock> tmp = WCFClientIIS.Instance.GetAlarmClocks(StationManager.CurrentUser.Guid);
@@ -108,10 +106,17 @@ namespace AlarmClockWPFClient.ViewModels
 
         private void StopWorkingThread()
         {
-            _tokenSource.Cancel();
-            _workingThread1.Join(100);
-            _workingThread1.Abort();
-            _workingThread1 = null;
+            try
+            {
+                _tokenSource.Cancel();
+                _workingThread1.Join(100);
+                _workingThread1.Abort();
+                _workingThread1 = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.SaveIntoFile(ex,FileFolderHelper.ExceptionLogFilePath);
+            }
         }
 
         public Alarm SelectedItem
@@ -191,6 +196,7 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
@@ -224,6 +230,7 @@ namespace AlarmClockWPFClient.ViewModels
                         }
                         catch (Exception e)
                         {
+                            Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                             MessageBox.Show(e.Message, "Server error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
@@ -255,6 +262,7 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                     MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
@@ -286,8 +294,9 @@ namespace AlarmClockWPFClient.ViewModels
                 {
                     File.Delete(FileFolderHelper.StorageFilePath);
                 }
-                catch (IOException)
+                catch (IOException ex)
                 {
+                    Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                     MessageBox.Show("Error while deleting serialized user data.", "Client error",MessageBoxButton.OK,MessageBoxImage.Error);
                 }
             }

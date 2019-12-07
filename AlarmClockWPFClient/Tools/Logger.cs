@@ -38,6 +38,7 @@ namespace AlarmClockWPFClient.Tools
             }
             catch (Exception e)
             {
+                Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                 throw new Exception($"Failed to log data to file {filePath}", ex);
             }
         }

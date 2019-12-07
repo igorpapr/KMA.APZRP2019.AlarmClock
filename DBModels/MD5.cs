@@ -2,11 +2,11 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
+namespace KMA.APZRP2019.AlarmClock.DBModels
 {
     class MD5
     {
-        static string key { get; } = "A!9HHhi%XjjYY4YP2@Nob009X";
+        static string Key { get; } = "A!9HHhi%XjjYY4YP2@Nob009X";
 
 
         public static string Encrypt(string text)
@@ -15,7 +15,7 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl
             {
                 using (var tdes = new TripleDESCryptoServiceProvider())
                 {
-                    tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                    tdes.Key = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Key));
                     tdes.Mode = CipherMode.ECB;
                     tdes.Padding = PaddingMode.PKCS7;
 

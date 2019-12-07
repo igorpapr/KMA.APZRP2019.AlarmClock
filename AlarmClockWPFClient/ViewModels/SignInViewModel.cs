@@ -94,6 +94,7 @@ namespace AlarmClockWPFClient.ViewModels
                 }
                 catch (Exception e)
                 {
+                    Logger.SaveIntoFile(e, FileFolderHelper.ExceptionLogFilePath);
                     MessageBox.Show(e.Message, "Error while signing in", MessageBoxButton.OK,
                         MessageBoxImage.Error);
                     return false;

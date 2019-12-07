@@ -46,8 +46,9 @@ namespace AlarmClockWPFClient
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                 NavigationManager.Instance.Navigate(ViewType.SignIn);
             }
         }

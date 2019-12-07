@@ -12,7 +12,10 @@ namespace AlarmClockWPFClient.Tools
         {
             //if (DateTime.Now.Hour == alarm.Time.Hour && DateTime.Now.Minute == alarm.Time.Minute
             //                                         && !alarm.CoolDown)
-            if (DateTime.Now.AddSeconds(-DateTime.Now.Second) == alarm.Time.AddSeconds(-alarm.Time.Second)
+            if (DateTime.Now.Hour == alarm.Time.Hour && DateTime.Now.Minute == alarm.Time.Minute
+                                                     && DateTime.Now.Day == alarm.Time.Day
+                                                     && DateTime.Now.Month == alarm.Time.Month
+                                                     && DateTime.Now.Year == alarm.Time.Year
                                                      && !alarm.CoolDown)
             {
                 RingRing();

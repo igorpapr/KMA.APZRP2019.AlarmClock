@@ -8,7 +8,6 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using KMA.APZRP2019.AlarmClock.DBModels;
 
 namespace AlarmClockWPFClient.ViewModels
 {

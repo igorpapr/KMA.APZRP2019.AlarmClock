@@ -23,6 +23,7 @@ namespace AlarmClockWPFClient.Tools.Managers
             }
             catch (Exception ex)
             {
+                Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                 throw new Exception($"Failed to serialize data to file {filePath}", ex);
             }
         }
@@ -41,10 +42,12 @@ namespace AlarmClockWPFClient.Tools.Managers
             }
             catch (FileNotFoundException ex)
             {
+                Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                 throw new FileNotFoundException($"Failed to Deserialize Data From File {filePath}", ex);
             }
             catch (Exception ex)
             {
+                Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                 throw new Exception($"Failed to Deserialize Data From File {filePath}", ex);
             }
         }

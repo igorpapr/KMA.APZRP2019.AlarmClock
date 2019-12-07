@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using KMA.APZRP2019.AlarmClock.Server.AlarmClockServiceImpl;
 
 namespace KMA.APZRP2019.AlarmClock.DBModels
 {

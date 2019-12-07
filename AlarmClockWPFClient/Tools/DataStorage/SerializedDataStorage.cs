@@ -16,8 +16,9 @@ namespace AlarmClockWPFClient.Tools.DataStorage
             {
                 _users = SerializationManager.Deserialize<List<User>>(FileFolderHelper.StorageFilePath);
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
+                Logger.SaveIntoFile(ex, FileFolderHelper.ExceptionLogFilePath);
                 _users = new List<User>();
             }
         }
@@ -38,10 +39,7 @@ namespace AlarmClockWPFClient.Tools.DataStorage
             SaveChanges();
         }
 
-        public List<User> UsersList
-        {
-            get { return _users.ToList(); }
-        }
+        public List<User> UsersList => _users.ToList();
 
         private void SaveChanges()
         {
