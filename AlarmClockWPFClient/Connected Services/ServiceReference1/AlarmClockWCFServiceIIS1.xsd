@@ -5,7 +5,11 @@
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="user" nillable="true" type="q1:User" />
+        <xs:element minOccurs="0" name="firstName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="lastName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="login" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -25,29 +29,29 @@
   <xs:element name="GetUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="GetUserResult" nillable="true" type="q2:User" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="GetUserResult" nillable="true" type="q1:User" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAlarmClocks">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userGuid" type="q3:guid" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userGuid" type="q2:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAlarmClocksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="GetAlarmClocksResult" nillable="true" type="q4:ArrayOfAlarmClock" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="GetAlarmClocksResult" nillable="true" type="q3:ArrayOfAlarmClock" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAlarmClock">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userGuid" type="q5:guid" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="clock" nillable="true" type="q6:AlarmClock" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userGuid" type="q4:guid" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="clock" nillable="true" type="q5:AlarmClock" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -59,7 +63,7 @@
   <xs:element name="DeleteAlarmClock">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clockGuid" type="q7:guid" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clockGuid" type="q6:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -71,25 +75,13 @@
   <xs:element name="UpdateAlarmClock">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="alarmGuid" type="q8:guid" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="alarmGuid" type="q7:guid" />
         <xs:element minOccurs="0" name="lastTime" type="xs:dateTime" />
         <xs:element minOccurs="0" name="nextTime" type="xs:dateTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateAlarmClockResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateAllAlarmsByUser">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/KMA.APZRP2019.AlarmClock.DBModels" minOccurs="0" name="clocks" nillable="true" type="q9:ArrayOfAlarmClock" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateAllAlarmsByUserResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

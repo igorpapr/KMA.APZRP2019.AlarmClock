@@ -10,9 +10,9 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
     {
         private AlarmClockImpl service = new AlarmClockImpl();
 
-        public void AddUser(User user)
+        public void AddUser(string firstName, string lastName, string login, string email, string password)
         {
-            service.AddUser(user);
+            service.AddUser(firstName,lastName,login,email,password);
         }
 
         public User GetUser(string login, string password)
@@ -38,11 +38,6 @@ namespace KMA.APZRP2019.AlarmClock.Server.AlarmClockWCFServerIIS
         public void UpdateAlarmClock(Guid alarmGuid, DateTime lastTime, DateTime nextTime)
         {
             service.UpdateAlarmClock(alarmGuid, lastTime, nextTime);
-        }
-
-        public void UpdateAllAlarmsByUser(List<DBModels.AlarmClock> clocks)
-        {
-            service.UpdateAllAlarmsByUser(clocks);
         }
     }
 }

@@ -16,10 +16,10 @@ namespace AlarmClockWPFClient.ServiceReference1 {
     public interface IAlarmClockService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/AddUser", ReplyAction="http://tempuri.org/IAlarmClockService/AddUserResponse")]
-        void AddUser(KMA.APZRP2019.AlarmClock.DBModels.User user);
+        void AddUser(string firstName, string lastName, string login, string email, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/AddUser", ReplyAction="http://tempuri.org/IAlarmClockService/AddUserResponse")]
-        System.Threading.Tasks.Task AddUserAsync(KMA.APZRP2019.AlarmClock.DBModels.User user);
+        System.Threading.Tasks.Task AddUserAsync(string firstName, string lastName, string login, string email, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/GetUser", ReplyAction="http://tempuri.org/IAlarmClockService/GetUserResponse")]
         KMA.APZRP2019.AlarmClock.DBModels.User GetUser(string login, string password);
@@ -50,12 +50,6 @@ namespace AlarmClockWPFClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClock", ReplyAction="http://tempuri.org/IAlarmClockService/UpdateAlarmClockResponse")]
         System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid alarmGuid, System.DateTime lastTime, System.DateTime nextTime);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUser", ReplyAction="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUserResponse")]
-        void UpdateAllAlarmsByUser(System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> clocks);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUser", ReplyAction="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUserResponse")]
-        System.Threading.Tasks.Task UpdateAllAlarmsByUserAsync(System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> clocks);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -85,12 +79,12 @@ namespace AlarmClockWPFClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public void AddUser(KMA.APZRP2019.AlarmClock.DBModels.User user) {
-            base.Channel.AddUser(user);
+        public void AddUser(string firstName, string lastName, string login, string email, string password) {
+            base.Channel.AddUser(firstName, lastName, login, email, password);
         }
         
-        public System.Threading.Tasks.Task AddUserAsync(KMA.APZRP2019.AlarmClock.DBModels.User user) {
-            return base.Channel.AddUserAsync(user);
+        public System.Threading.Tasks.Task AddUserAsync(string firstName, string lastName, string login, string email, string password) {
+            return base.Channel.AddUserAsync(firstName, lastName, login, email, password);
         }
         
         public KMA.APZRP2019.AlarmClock.DBModels.User GetUser(string login, string password) {
@@ -131,14 +125,6 @@ namespace AlarmClockWPFClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task UpdateAlarmClockAsync(System.Guid alarmGuid, System.DateTime lastTime, System.DateTime nextTime) {
             return base.Channel.UpdateAlarmClockAsync(alarmGuid, lastTime, nextTime);
-        }
-        
-        public void UpdateAllAlarmsByUser(System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> clocks) {
-            base.Channel.UpdateAllAlarmsByUser(clocks);
-        }
-        
-        public System.Threading.Tasks.Task UpdateAllAlarmsByUserAsync(System.Collections.Generic.List<KMA.APZRP2019.AlarmClock.DBModels.AlarmClock> clocks) {
-            return base.Channel.UpdateAllAlarmsByUserAsync(clocks);
         }
     }
 }

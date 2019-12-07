@@ -113,7 +113,7 @@ namespace AlarmClockWPFClient.ViewModels
                     }
                     else
                     {
-                        WCFClientIIS.Instance.AddUser(new User(Name, Surname, Login, Email,Password));
+                        WCFClientIIS.Instance.AddUser(Name, Surname, Login, Email,Password);
                     }
                    
                 }

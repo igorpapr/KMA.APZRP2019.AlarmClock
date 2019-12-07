@@ -43,12 +43,6 @@
   <wsdl:message name="IAlarmClockService_UpdateAlarmClock_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdateAlarmClockResponse" />
   </wsdl:message>
-  <wsdl:message name="IAlarmClockService_UpdateAllAlarmsByUser_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAllAlarmsByUser" />
-  </wsdl:message>
-  <wsdl:message name="IAlarmClockService_UpdateAllAlarmsByUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateAllAlarmsByUserResponse" />
-  </wsdl:message>
   <wsdl:portType name="IAlarmClockService">
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/AddUser" message="tns:IAlarmClockService_AddUser_InputMessage" />
@@ -73,10 +67,6 @@
     <wsdl:operation name="UpdateAlarmClock">
       <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClock" message="tns:IAlarmClockService_UpdateAlarmClock_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAlarmClockResponse" message="tns:IAlarmClockService_UpdateAlarmClock_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAllAlarmsByUser">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUser" message="tns:IAlarmClockService_UpdateAllAlarmsByUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUserResponse" message="tns:IAlarmClockService_UpdateAllAlarmsByUser_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAlarmClockService" type="tns:IAlarmClockService">
@@ -128,15 +118,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateAlarmClock">
       <soap:operation soapAction="http://tempuri.org/IAlarmClockService/UpdateAlarmClock" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateAllAlarmsByUser">
-      <soap:operation soapAction="http://tempuri.org/IAlarmClockService/UpdateAllAlarmsByUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
